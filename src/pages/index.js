@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import JSZip from 'jszip'
+import FileSaver from 'file-saver'
 import styles from '../styles/Home.module.css'
 import { icons } from '../icons/icons'
 
@@ -42,7 +43,7 @@ export default function Home() {
 		})
 
 		zip.generateAsync({ type: 'blob' }).then(function (content) {
-			saveAs(content, 'polkadot-icons.zip')
+			FileSaver.saveAs(content, 'polkadot-icons.zip')
 		})
 	}
 
