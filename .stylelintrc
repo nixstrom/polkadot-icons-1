@@ -1,0 +1,4 @@
+{
+	"configBasedir": "./src",
+	"extends": ["stylelint-config-standard", "stylelint-config-css-modules"]
+}
