@@ -1,5 +1,5 @@
 import React from 'react'
-import { icons } from '../../icons/icons'
+import { icons } from '@icons/icons'
 import styles from './IconList.module.css'
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
 	size: string
 }
 
-function createMarkup(markup) {
+function createMarkup(markup: string) {
 	return { __html: markup }
 }
 

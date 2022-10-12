@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type ChangeEvent } from 'react'
 import Head from 'next/head'
 import JSZip from 'jszip'
 import FileSaver from 'file-saver'
-import styles from '../styles/Home.module.css'
-import { IconList } from '../modules/IconList/IconList'
-import { icons } from '../icons/icons'
+import { IconList } from '@modules/IconList/IconList'
+import { icons } from '@icons/icons'
+import styles from '@styles/Home.module.css'
 
 const getColorScheme = () =>
 	typeof window !== 'undefined' &&
@@ -18,15 +18,15 @@ export default function Home() {
 	const [size, setSize] = useState('24')
 	const [files, setFiles] = useState([])
 
-	const handleOnColorChange = event => {
+	const handleOnColorChange = (event: ChangeEvent<HTMLInputElement>) => {
 		setColor(event.target.value)
 	}
 
-	const handleOnStrokeWidthChange = event => {
+	const handleOnStrokeWidthChange = (event: ChangeEvent<HTMLInputElement>) => {
 		setStrokeWidth(event.target.value)
 	}
 
-	const handleOnSizeChange = event => {
+	const handleOnSizeChange = (event: ChangeEvent<HTMLInputElement>) => {
 		setSize(event.target.value)
 	}
 
