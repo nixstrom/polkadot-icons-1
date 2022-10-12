@@ -2,6 +2,7 @@ import { useEffect, useState, type ChangeEvent } from 'react'
 import Head from 'next/head'
 import JSZip from 'jszip'
 import FileSaver from 'file-saver'
+import { Header } from '@modules/Header/Header'
 import { IconList } from '@modules/IconList/IconList'
 import { icons } from '@icons/icons'
 import styles from '@styles/Home.module.css'
@@ -17,18 +18,6 @@ export default function Home() {
 	const [strokeWidth, setStrokeWidth] = useState('2')
 	const [size, setSize] = useState('24')
 	const [files, setFiles] = useState([])
-
-	const handleOnColorChange = (event: ChangeEvent<HTMLInputElement>) => {
-		setColor(event.target.value)
-	}
-
-	const handleOnStrokeWidthChange = (event: ChangeEvent<HTMLInputElement>) => {
-		setStrokeWidth(event.target.value)
-	}
-
-	const handleOnSizeChange = (event: ChangeEvent<HTMLInputElement>) => {
-		setSize(event.target.value)
-	}
 
 	const handleOnDownload = () => {
 		const zip = new JSZip()
@@ -55,37 +44,11 @@ export default function Home() {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<main className={styles.main}>
-				<header className={styles.header}>
-					<label>
-						<b>Stroke colour:</b> {color}
-						<br />
-						<input type="color" value={color} onChange={handleOnColorChange} />
-					</label>
-
-					<label>
-						<b>Stroke width:</b> {strokeWidth}px
-						<br />
-						<input
-							type="range"
-							min="1"
-							max="5"
-							value={strokeWidth}
-							onChange={handleOnStrokeWidthChange}
-						/>
-					</label>
-					<label>
-						<b>Size:</b> {size}x{size}px
-						<br />
-						<input
-							type="range"
-							min="12"
-							max="48"
-							step="6"
-							value={size}
-							onChange={handleOnSizeChange}
-						/>
-					</label>
-				</header>
+				<Header
+					colorState={[color, setColor]}
+					strokeWidthState={[strokeWidth, setStrokeWidth]}
+					sizeState={[size, setSize]}
+				/>
 
 				<IconList {...{ color, size, strokeWidth }} />
 
