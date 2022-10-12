@@ -1,0 +1,37 @@
+.list {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+	margin: 3rem 0;
+	text-align: center;
+	border-radius: var(--border-radius);
+	border: solid 2px currentColor;
+	overflow: hidden;
+	list-style: none;
+	padding: 0;
+	margin: 2rem 0;
+	text-indent: 0;
+	width: 100%;
+}
+
+.listItem {
+	border: solid 1px currentColor;
+	/* Prevent double borders between items */
+	margin-left: -1px;
+}
+
+.download {
+	display: block;
+	padding: 1.5rem;
+}
+
+.iconContainer {
+	margin: 1rem auto;
+	/* Prevent layout shift when changing icon size */
+	min-height: 54px;
+	min-width: 54px;
+	line-height: 54px;
+}
+
+.iconContainer svg {
+	vertical-align: middle;
+}

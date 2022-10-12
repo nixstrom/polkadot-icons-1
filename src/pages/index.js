@@ -3,6 +3,7 @@ import Head from 'next/head'
 import JSZip from 'jszip'
 import FileSaver from 'file-saver'
 import styles from '../styles/Home.module.css'
+import { IconList } from '../modules/IconList/IconList'
 import { icons } from '../icons/icons'
 
 const getColorScheme = () =>
@@ -17,12 +18,6 @@ export default function Home() {
 	const [size, setSize] = useState('24')
 	const [files, setFiles] = useState([])
 
-	function createMarkup(markup) {
-		if (files.length === 0) {
-			setFiles([markup])
-		}
-		return { __html: markup }
-	}
 	const handleOnColorChange = event => {
 		setColor(event.target.value)
 	}
@@ -92,31 +87,7 @@ export default function Home() {
 					</label>
 				</header>
 
-				<article className={styles.iconContainer}>
-					{icons.map(icon => {
-						return (
-							<div className={styles.iconItem} key={icon.name}>
-								<p>{icon.name}</p>
-								<div
-									className={styles.iconItemIcon}
-									dangerouslySetInnerHTML={createMarkup(
-										icon.svg(color, strokeWidth, size),
-									)}
-								/>
-								<a
-									href={
-										'data:text/csv;charset=UTF-8,' +
-										encodeURIComponent(icon.svg(color, strokeWidth, size))
-									}
-									download={`${icon.name}.svg`}
-									className={styles.buttonSolid}
-								>
-									Download
-								</a>
-							</div>
-						)
-					})}
-				</article>
+				<IconList {...{ color, size, strokeWidth }} />
 
 				<button className={styles.buttonOutline} onClick={handleOnDownload}>
 					Download all
