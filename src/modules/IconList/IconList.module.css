@@ -3,16 +3,12 @@
 	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 	margin: 3rem 0;
 	text-align: center;
-	border-radius: var(--border-radius);
-
 	overflow: hidden;
 	list-style: none;
 	padding: 0;
 	margin: 2rem 0;
 	text-indent: 0;
 	width: 100%;
-	/* Creates an inset border, preventing double borders from items */
-	box-shadow: inset 0 0 0 2px currentColor;
 }
 
 .listItem {

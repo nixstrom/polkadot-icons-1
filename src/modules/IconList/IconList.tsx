@@ -1,5 +1,6 @@
 import React from 'react'
 import { icons } from '@icons/icons'
+import { Box } from '@components/Box/Box'
 import styles from './IconList.module.css'
 
 type Props = {
@@ -14,7 +15,7 @@ function createMarkup(markup: string) {
 
 export const IconList = ({ color, strokeWidth, size }: Props) => {
 	return (
-		<ul className={styles.list}>
+		<Box as="ul" className={styles.list}>
 			{icons.map(icon => {
 				return (
 					<li className={styles.listItem} key={icon.name}>
@@ -37,6 +38,6 @@ export const IconList = ({ color, strokeWidth, size }: Props) => {
 					</li>
 				)
 			})}
-		</ul>
+		</Box>
 	)
 }

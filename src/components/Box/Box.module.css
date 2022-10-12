@@ -1,0 +1,5 @@
+.box {
+	border-radius: var(--border-radius);
+	/* Creates an inset border, preventing double borders from items */
+	box-shadow: inset 0 0 0 2px currentColor;
+}
