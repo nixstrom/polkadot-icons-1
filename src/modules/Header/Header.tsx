@@ -4,12 +4,12 @@ import { InputLabel } from '@components/InputLabel/InputLabel'
 import { RangeInput } from '@components/RangeInput/RangeInput'
 import styles from './Header.module.css'
 
-type SvgConfigState = [string, (nextValue: string) => void]
+type SvgConfigState = readonly [string, (nextValue: string) => void]
 
 type Props = {
-	colorState: SvgConfigState
-	strokeWidthState: SvgConfigState
-	sizeState: SvgConfigState
+	readonly colorState: SvgConfigState
+	readonly strokeWidthState: SvgConfigState
+	readonly sizeState: SvgConfigState
 }
 
 export const Header = ({ colorState, strokeWidthState, sizeState }: Props) => {

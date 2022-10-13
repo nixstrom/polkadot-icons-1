@@ -4,9 +4,9 @@ import { Box } from '@components/Box/Box'
 import styles from './IconList.module.css'
 
 type Props = {
-	color: string
-	strokeWidth: string
-	size: string
+	readonly color: string
+	readonly strokeWidth: string
+	readonly size: string
 }
 
 function createMarkup(markup: string) {

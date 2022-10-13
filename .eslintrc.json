@@ -1,3 +1,52 @@
 {
-  "extends": "next/core-web-vitals"
+	"env": {
+		"browser": true,
+		"es2021": true
+	},
+	"extends": [
+		"eslint:recommended",
+		"plugin:react/recommended",
+		"plugin:react-hooks/recommended",
+		"plugin:jsx-a11y/recommended",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:sonarjs/recommended",
+		"plugin:functional/lite",
+		"plugin:functional/stylistic",
+		"plugin:jsx-a11y/recommended",
+		"prettier",
+		"next"
+	],
+	"ignorePatterns": ["src/types/generated.ts"],
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"ecmaVersion": 12,
+		"sourceType": "module",
+		"project": "./tsconfig.json"
+	},
+	"plugins": [
+		"react",
+		"react-hooks",
+		"sonarjs",
+		"@typescript-eslint",
+		"jsx-a11y",
+		"functional",
+		"prettier"
+	],
+	"rules": {
+		"no-undef": "off", // Already covered by TypeScript,
+		"@typescript-eslint/explicit-module-boundary-types": "off", // Types should be inferred when possible
+		"react/prop-types": "off", // We will use TypeScript"s types for component props instead
+		"react/react-in-jsx-scope": "off", // No need to import React with Next.js
+		"jsx-a11y/anchor-is-valid": "off", // This rule is not compatible with Next.JS"s <Link />
+		"jsx-a11y/label-has-associated-control": "off", // Hard to enforce with modular components
+		"functional/no-return-void": "off" // This happens too often with useState
+	},
+	"settings": {
+		"react": {
+			"version": "detect"
+		}
+	}
 }

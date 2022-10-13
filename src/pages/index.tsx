@@ -1,4 +1,4 @@
-import { useEffect, useState, type ChangeEvent } from 'react'
+import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import JSZip from 'jszip'
 import FileSaver from 'file-saver'
@@ -17,7 +17,6 @@ export default function Home() {
 	const [color, setColor] = useState(() => '#ffffff')
 	const [strokeWidth, setStrokeWidth] = useState('2')
 	const [size, setSize] = useState('24')
-	const [files, setFiles] = useState([])
 
 	const handleOnDownload = () => {
 		const zip = new JSZip()
