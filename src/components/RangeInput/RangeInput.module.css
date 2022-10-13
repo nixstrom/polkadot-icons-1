@@ -1,0 +1,57 @@
+.input {
+	--range-input-height: 19px;
+	--focus-ring-size: 4px;
+	height: var(--range-input-height);
+	-webkit-appearance: none;
+	margin: 0 10px;
+	background: transparent;
+	vertical-align: middle;
+}
+.input:focus {
+	outline: none;
+}
+
+.input::-webkit-slider-runnable-track {
+	width: 100%;
+	height: 1px;
+	cursor: pointer;
+	background-color: currentColor;
+}
+.input::-webkit-slider-thumb {
+	height: var(--range-input-height);
+	width: var(--range-input-height);
+	border-radius: var(--range-input-height);
+	background: currentColor;
+	cursor: pointer;
+	-webkit-appearance: none;
+	margin-top: -9.5px;
+	transition: background-color var(--transition-speed),
+		box-shadow var(--transition-speed);
+}
+
+.input:focus::-webkit-slider-thumb {
+	background-color: var(--inverse-color);
+	box-shadow: inset 0 0 0 4px currentColor;
+}
+
+/* Firefox */
+.input::-moz-range-track {
+	width: 100%;
+	height: 1px;
+	cursor: pointer;
+	background-color: currentColor;
+}
+.input::-moz-range-thumb {
+	height: var(--range-input-height);
+	width: var(--range-input-height);
+	border-radius: var(--range-input-height);
+	background: currentColor;
+	cursor: pointer;
+	transition: background-color var(--transition-speed),
+		box-shadow var(--transition-speed);
+}
+
+.input:focus::-moz-range-thumb {
+	background-color: var(--inverse-color);
+	box-shadow: inset 0 0 0 4px currentColor;
+}

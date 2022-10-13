@@ -1,5 +1,7 @@
 import { type ChangeEvent } from 'react'
 import { Box } from '@components/Box/Box'
+import { InputLabel } from '@components/InputLabel/InputLabel'
+import { RangeInput } from '@components/RangeInput/RangeInput'
 import styles from './Header.module.css'
 
 type SvgConfigState = [string, (nextValue: string) => void]
@@ -19,45 +21,36 @@ export const Header = ({ colorState, strokeWidthState, sizeState }: Props) => {
 		setColor(event.target.value)
 	}
 
-	const handleOnStrokeWidthChange = (event: ChangeEvent<HTMLInputElement>) => {
-		setStrokeWidth(event.target.value)
-	}
-
-	const handleOnSizeChange = (event: ChangeEvent<HTMLInputElement>) => {
-		setSize(event.target.value)
-	}
-
 	return (
 		<Box as="header" className={styles.header}>
-			<label>
-				<b>Stroke colour:</b> {color}
-				<br />
+			<InputLabel>
+				<b>Stroke colour:</b>
 				<input type="color" value={color} onChange={handleOnColorChange} />
-			</label>
+				{color}
+			</InputLabel>
 
-			<label>
-				<b>Stroke width:</b> {strokeWidth}px
-				<br />
-				<input
-					type="range"
+			<InputLabel>
+				<b>Stroke width:</b>
+				<RangeInput
 					min="1"
-					max="5"
+					max="2.5"
+					step="0.5"
 					value={strokeWidth}
-					onChange={handleOnStrokeWidthChange}
+					onChange={setStrokeWidth}
 				/>
-			</label>
-			<label>
-				<b>Size:</b> {size}x{size}px
-				<br />
-				<input
-					type="range"
+				{strokeWidth} px
+			</InputLabel>
+			<InputLabel>
+				<b>Size:</b>
+				<RangeInput
 					min="12"
 					max="48"
 					step="6"
 					value={size}
-					onChange={handleOnSizeChange}
+					onChange={setSize}
 				/>
-			</label>
+				{size}×{size} px
+			</InputLabel>
 		</Box>
 	)
 }
