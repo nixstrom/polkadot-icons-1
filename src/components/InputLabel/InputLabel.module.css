@@ -1,3 +1,6 @@
 .label {
 	text-transform: uppercase;
+	white-space: nowrap;
+	display: flex;
+	flex: 1;
 }

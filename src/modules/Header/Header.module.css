@@ -3,3 +3,11 @@
 	display: flex;
 	gap: 2rem;
 }
+
+.strokeWidthValue {
+	width: 4ch;
+}
+
+.sizeWidthValue {
+	width: 8ch;
+}

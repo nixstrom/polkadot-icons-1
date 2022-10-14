@@ -1,6 +1,6 @@
-import { type ChangeEvent } from 'react'
 import { Box } from '@components/Box/Box'
 import { InputLabel } from '@components/InputLabel/InputLabel'
+import { ColorInput } from '@components/ColorInput/ColorInput'
 import { RangeInput } from '@components/RangeInput/RangeInput'
 import styles from './Header.module.css'
 
@@ -17,16 +17,11 @@ export const Header = ({ colorState, strokeWidthState, sizeState }: Props) => {
 	const [strokeWidth, setStrokeWidth] = strokeWidthState
 	const [size, setSize] = sizeState
 
-	const handleOnColorChange = (event: ChangeEvent<HTMLInputElement>) => {
-		setColor(event.target.value)
-	}
-
 	return (
 		<Box as="header" className={styles.header}>
 			<InputLabel>
 				<b>Stroke colour:</b>
-				<input type="color" value={color} onChange={handleOnColorChange} />
-				{color}
+				<ColorInput value={color} onChange={setColor} />
 			</InputLabel>
 
 			<InputLabel>
@@ -38,7 +33,7 @@ export const Header = ({ colorState, strokeWidthState, sizeState }: Props) => {
 					value={strokeWidth}
 					onChange={setStrokeWidth}
 				/>
-				{strokeWidth} px
+				<span className={styles.strokeWidthValue}>{strokeWidth} px</span>
 			</InputLabel>
 			<InputLabel>
 				<b>Size:</b>
@@ -49,7 +44,9 @@ export const Header = ({ colorState, strokeWidthState, sizeState }: Props) => {
 					value={size}
 					onChange={setSize}
 				/>
-				{size}×{size} px
+				<span className={styles.sizeWidthValue}>
+					{size}×{size} px
+				</span>
 			</InputLabel>
 		</Box>
 	)

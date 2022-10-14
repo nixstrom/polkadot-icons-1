@@ -1,6 +1,7 @@
 :root {
 	--bg-color: white;
 	--inverse-color: var(--bg-color);
+	--interaction-color: black;
 	--font-color: black;
 	--border-radius: 20px;
 	--transition-speed: 0.3s;
@@ -29,6 +30,7 @@ a {
 	:root {
 		--bg-color: black;
 		--font-color: white;
+		--interaction-color: white;
 	}
 
 	html {
