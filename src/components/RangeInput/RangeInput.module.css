@@ -1,8 +1,8 @@
 .input {
 	--range-input-height: 19px;
 	--focus-ring-size: 4px;
+	appearance: none;
 	height: var(--range-input-height);
-	-webkit-appearance: none;
 	margin: 0 10px;
 	background: transparent;
 	vertical-align: middle;
@@ -18,12 +18,12 @@
 	background-color: currentColor;
 }
 .input::-webkit-slider-thumb {
+	appearance: none;
 	height: var(--range-input-height);
 	width: var(--range-input-height);
 	border-radius: var(--range-input-height);
 	background: currentColor;
 	cursor: pointer;
-	-webkit-appearance: none;
 	margin-top: -9.5px;
 	transition: background-color var(--transition-speed),
 		box-shadow var(--transition-speed);
