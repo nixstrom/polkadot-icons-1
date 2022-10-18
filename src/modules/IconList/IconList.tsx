@@ -33,7 +33,7 @@ export const IconList = ({ color, strokeWidth, size }: Props) => {
 									icon.svg(color, strokeWidth, size),
 								)}
 							/>
-							<p>{icon.name}</p>
+							<small className={styles.iconName}>{icon.name}</small>
 						</a>
 					</li>
 				)
