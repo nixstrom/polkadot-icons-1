@@ -2,26 +2,12 @@ import React, { useState, useRef } from 'react'
 import { useIcon } from './hooks/useIcon'
 import styles from './IconList.module.css'
 
-type Props = {
-	readonly color: string
-	readonly strokeWidth: string
-	readonly size: string
-}
-
-export const Icon = ({
-	color,
-	strokeWidth,
-	size,
-	icon,
-}: Props & { readonly icon: string }) => {
+export const Icon = ({ iconName }: { readonly iconName: string }) => {
 	const containerRef = useRef<HTMLDivElement | null>(null)
 	// Used to trigger update in useIcon (since refs don't trigger useEffect)
 	const [hasRef, setHasRef] = useState(false)
 	const [svg, status] = useIcon({
-		color,
-		strokeWidth,
-		size,
-		icon,
+		iconName,
 		containerRef,
 		containerHasRef: hasRef,
 	})

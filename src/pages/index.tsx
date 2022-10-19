@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import Head from 'next/head'
 import JSZip from 'jszip'
 import FileSaver from 'file-saver'
 import { Header } from '@modules/Header/Header'
 import { IconList } from '@modules/IconList/IconList'
 import { icons } from '@icons/icons'
+import { useCustomisationContext } from '@hooks/useCustomisationContext'
 import styles from '@styles/Home.module.css'
 
 const getColorScheme = () =>
@@ -14,15 +15,14 @@ const getColorScheme = () =>
 		: 'light'
 
 export default function Home() {
-	const [color, setColor] = useState(() => '#ffffff')
-	const [strokeWidth, setStrokeWidth] = useState('2')
-	const [size, setSize] = useState('24')
+	const { strokeColor, strokeWidth, iconSize, setStrokeColor } =
+		useCustomisationContext()
 
 	const handleOnDownload = () => {
 		const zip = new JSZip()
 
 		icons.forEach(file => {
-			zip.file(`${file.name}.svg`, file.svg(color, strokeWidth, size))
+			zip.file(`${file.name}.svg`, file.svg(strokeColor, strokeWidth, iconSize))
 		})
 
 		zip.generateAsync({ type: 'blob' }).then(function (content) {
@@ -32,8 +32,8 @@ export default function Home() {
 
 	useEffect(() => {
 		// prevents hydration error when in light mode
-		setColor(getColorScheme() === 'dark' ? '#ffffff' : '#000000')
-	}, [])
+		setStrokeColor(getColorScheme() === 'dark' ? '#ffffff' : '#000000')
+	}, [setStrokeColor])
 
 	return (
 		<div className={styles.container}>
@@ -57,13 +57,9 @@ export default function Home() {
 				/>
 			</Head>
 			<main className={styles.main}>
-				<Header
-					colorState={[color, setColor]}
-					strokeWidthState={[strokeWidth, setStrokeWidth]}
-					sizeState={[size, setSize]}
-				/>
+				<Header />
 
-				<IconList {...{ color, size, strokeWidth }} />
+				<IconList />
 
 				<button className={styles.buttonOutline} onClick={handleOnDownload}>
 					Download all

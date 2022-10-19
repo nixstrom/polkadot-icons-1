@@ -2,26 +2,24 @@ import { Box } from '@components/Box/Box'
 import { InputLabel } from '@components/InputLabel/InputLabel'
 import { ColorInput } from '@components/ColorInput/ColorInput'
 import { RangeInput } from '@components/RangeInput/RangeInput'
+import { useCustomisationContext } from '@hooks/useCustomisationContext'
 import styles from './Header.module.css'
 
-type SvgConfigState = readonly [string, (nextValue: string) => void]
-
-type Props = {
-	readonly colorState: SvgConfigState
-	readonly strokeWidthState: SvgConfigState
-	readonly sizeState: SvgConfigState
-}
-
-export const Header = ({ colorState, strokeWidthState, sizeState }: Props) => {
-	const [color, setColor] = colorState
-	const [strokeWidth, setStrokeWidth] = strokeWidthState
-	const [size, setSize] = sizeState
+export const Header = () => {
+	const {
+		strokeColor,
+		setStrokeColor,
+		strokeWidth,
+		setStrokeWidth,
+		iconSize,
+		setIconSize,
+	} = useCustomisationContext()
 
 	return (
 		<Box as="header" className={styles.header}>
 			<InputLabel>
 				<b>Stroke colour:</b>
-				<ColorInput value={color} onChange={setColor} />
+				<ColorInput value={strokeColor} onChange={setStrokeColor} />
 			</InputLabel>
 
 			<InputLabel>
@@ -41,11 +39,11 @@ export const Header = ({ colorState, strokeWidthState, sizeState }: Props) => {
 					min="12"
 					max="48"
 					step="6"
-					value={size}
-					onChange={setSize}
+					value={iconSize}
+					onChange={setIconSize}
 				/>
 				<span className={styles.sizeWidthValue}>
-					{size}×{size} px
+					{iconSize}×{iconSize} px
 				</span>
 			</InputLabel>
 		</Box>

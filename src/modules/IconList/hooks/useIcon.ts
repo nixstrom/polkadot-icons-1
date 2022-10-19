@@ -1,24 +1,16 @@
 import { useState, useEffect, useRef, type MutableRefObject } from 'react'
+import { useCustomisationContext } from '@hooks/useCustomisationContext'
 
 type Props = {
-	readonly color: string
-	readonly strokeWidth: string
-	readonly size: string
-	readonly icon: string
+	readonly iconName: string
 	readonly containerRef: MutableRefObject<HTMLDivElement | null>
 	readonly containerHasRef: boolean
 }
 
-type Status = 'idle' | 'loading' | 'error' | 'success'
+type Status = 'loading' | 'error' | 'success'
 
-export const useIcon = ({
-	color,
-	strokeWidth,
-	size,
-	icon,
-	containerRef,
-	containerHasRef,
-}: Props) => {
+export const useIcon = ({ iconName, containerRef, containerHasRef }: Props) => {
+	const { strokeColor, strokeWidth, iconSize } = useCustomisationContext()
 	const [svg, setSvg] = useState<string>('')
 	const [status, setStatus] = useState<Status>('loading')
 	const iconRef = useRef<SVGElement | null>(null)
@@ -26,12 +18,12 @@ export const useIcon = ({
 	const [hasRef, setHasRef] = useState(false)
 
 	useEffect(() => {
-		fetch(`/icons/${icon}.svg`)
+		fetch(`/icons/${iconName}.svg`)
 			.then(res => res.text())
 			.then(setSvg)
 			.catch(() => setStatus('error'))
 			.then(() => setStatus('success'))
-	}, [icon])
+	}, [iconName])
 
 	const changeStrokeColor = (newColor: string) => {
 		if (iconRef.current) {
@@ -61,13 +53,13 @@ export const useIcon = ({
 	}
 
 	useEffect(() => {
-		changeStrokeColor(color)
-	}, [containerHasRef, color, hasRef, status])
+		changeStrokeColor(strokeColor)
+	}, [containerHasRef, strokeColor, hasRef, status])
 	useEffect(
 		() => changeStrokeWidth(strokeWidth),
 		[containerHasRef, strokeWidth, hasRef],
 	)
-	useEffect(() => changeSize(size), [containerHasRef, size, hasRef])
+	useEffect(() => changeSize(iconSize), [containerHasRef, iconSize, hasRef])
 
 	useEffect(() => {
 		if (containerHasRef && containerRef.current && !iconRef.current) {

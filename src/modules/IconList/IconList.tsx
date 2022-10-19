@@ -3,12 +3,6 @@ import { Box } from '@components/Box/Box'
 import { Icon } from './Icon'
 import styles from './IconList.module.css'
 
-type Props = {
-	readonly color: string
-	readonly strokeWidth: string
-	readonly size: string
-}
-
 // Matches file names of icons in /public/icons
 const publicIcons = [
 	'Archive Node',
@@ -38,11 +32,11 @@ const publicIcons = [
 	'Withdraw',
 ]
 
-export const IconList = ({ color, strokeWidth, size }: Props) => (
+export const IconList = () => (
 	<Box as="ul" className={styles.list}>
 		{publicIcons.map(icon => (
 			<li className={styles.listItem} key={icon}>
-				<Icon {...{ color, strokeWidth, size, icon }} />
+				<Icon iconName={icon} />
 				<small className={styles.iconName}>{icon}</small>
 			</li>
 		))}
