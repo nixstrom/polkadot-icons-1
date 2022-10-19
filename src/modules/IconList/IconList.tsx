@@ -1,6 +1,6 @@
 import React from 'react'
-import { icons } from '@icons/icons'
 import { Box } from '@components/Box/Box'
+import { Icon } from './Icon'
 import styles from './IconList.module.css'
 
 type Props = {
@@ -9,35 +9,40 @@ type Props = {
 	readonly size: string
 }
 
-function createMarkup(markup: string) {
-	return { __html: markup }
-}
+// Matches file names of icons in /public/icons
+const publicIcons = [
+	'Archive Node',
+	'Blockchain V2',
+	'Boot Node',
+	'Connection via light Node',
+	'Decentralised Storage',
+	'Deposit',
+	'Glossary V1',
+	'Layer',
+	'Layer 1',
+	'Layer 2',
+	'Layer 3',
+	'Layer 4',
+	'Light Node',
+	'Limited supply',
+	'Node',
+	'Oracle V1',
+	'Proxy',
+	'Referenda V1',
+	'Remote Node',
+	'Teleport',
+	'Tools',
+	'Whitepaper',
+	'Withdraw',
+]
 
-export const IconList = ({ color, strokeWidth, size }: Props) => {
-	return (
-		<Box as="ul" className={styles.list}>
-			{icons.map(icon => {
-				return (
-					<li className={styles.listItem} key={icon.name}>
-						<a
-							href={
-								'data:text/csv;charset=UTF-8,' +
-								encodeURIComponent(icon.svg(color, strokeWidth, size))
-							}
-							download={`${icon.name}.svg`}
-							className={styles.download}
-						>
-							<div
-								className={styles.iconContainer}
-								dangerouslySetInnerHTML={createMarkup(
-									icon.svg(color, strokeWidth, size),
-								)}
-							/>
-							<small className={styles.iconName}>{icon.name}</small>
-						</a>
-					</li>
-				)
-			})}
-		</Box>
-	)
-}
+export const IconList = ({ color, strokeWidth, size }: Props) => (
+	<Box as="ul" className={styles.list}>
+		{publicIcons.map(icon => (
+			<li className={styles.listItem} key={icon}>
+				<Icon {...{ color, strokeWidth, size, icon }} />
+				<small className={styles.iconName}>{icon}</small>
+			</li>
+		))}
+	</Box>
+)

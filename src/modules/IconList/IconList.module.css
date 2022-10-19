@@ -14,10 +14,6 @@
 	border: solid 1px currentColor;
 	/* Prevents double borders from adjacent items */
 	border-width: 0 1px 1px 0;
-}
-
-.download {
-	display: block;
 	padding: 1.5rem;
 }
 
