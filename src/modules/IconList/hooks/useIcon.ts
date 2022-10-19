@@ -72,16 +72,6 @@ export const useIcon = ({
 	useEffect(() => changeSize(size), [containerHasRef, size, hasRef])
 
 	useEffect(() => {
-		if (iconRef.current) {
-			const shapes = iconRef.current?.querySelectorAll('rect, circ') || []
-
-			shapes.forEach(shape => {
-				shape.setAttribute('fill', 'transparent')
-			})
-		}
-	}, [color, strokeWidth, size, hasRef])
-
-	useEffect(() => {
 		if (containerHasRef && containerRef.current && !iconRef.current) {
 			// eslint-disable-next-line functional/immutable-data
 			iconRef.current = containerRef.current.children[0] as SVGElement
