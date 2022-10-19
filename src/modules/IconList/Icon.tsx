@@ -17,7 +17,7 @@ export const Icon = ({
 	const containerRef = useRef<HTMLDivElement | null>(null)
 	// Used to trigger update in useIcon (since refs don't trigger useEffect)
 	const [hasRef, setHasRef] = useState(false)
-	const [svg] = useIcon({
+	const [svg, status] = useIcon({
 		color,
 		strokeWidth,
 		size,
@@ -27,18 +27,22 @@ export const Icon = ({
 	})
 
 	const handleSetRef = (el: HTMLDivElement) => {
-		if (el) {
+		if (el && status === 'success') {
 			// eslint-disable-next-line functional/immutable-data
 			containerRef.current = el
 			setHasRef(true)
 		}
 	}
 
-	return svg ? (
+	if (status === 'error') return null
+
+	return (
 		<div
-			className={styles.iconContainer}
+			className={`${styles.iconContainer} ${
+				status === 'loading' ? styles.iconContainerLoading : ''
+			}`}
 			dangerouslySetInnerHTML={{ __html: svg }}
 			ref={handleSetRef}
 		/>
-	) : null
+	)
 }

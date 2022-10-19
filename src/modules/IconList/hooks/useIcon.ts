@@ -20,14 +20,12 @@ export const useIcon = ({
 	containerHasRef,
 }: Props) => {
 	const [svg, setSvg] = useState<string>('')
-	const [status, setStatus] = useState<Status>('idle')
+	const [status, setStatus] = useState<Status>('loading')
 	const iconRef = useRef<SVGElement | null>(null)
 	// used to determine if first-render effects should be ran
 	const [hasRef, setHasRef] = useState(false)
 
 	useEffect(() => {
-		setStatus('loading')
-
 		fetch(`/icons/${icon}.svg`)
 			.then(res => res.text())
 			.then(setSvg)
@@ -64,7 +62,7 @@ export const useIcon = ({
 
 	useEffect(() => {
 		changeStrokeColor(color)
-	}, [containerHasRef, color, hasRef])
+	}, [containerHasRef, color, hasRef, status])
 	useEffect(
 		() => changeStrokeWidth(strokeWidth),
 		[containerHasRef, strokeWidth, hasRef],

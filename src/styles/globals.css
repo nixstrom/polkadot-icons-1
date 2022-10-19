@@ -10,6 +10,7 @@
 	--font-size-xlarge: 1.25rem;
 	--border-radius: 20px;
 	--transition-speed: 0.3s;
+	--transition-speed-slow: 1s;
 }
 
 @font-face {
