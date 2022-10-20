@@ -17,16 +17,18 @@
 	font-family: Unbounded;
 	font-style: normal;
 	font-weight: normal;
-	font-display: optional;
-	src: url('/Unbounded-Regular.woff2') format('woff2');
+	font-display: block;
+	src: local('Unbounded-Regular'), local('Unbounded Regular'),
+		url('/Unbounded-Regular.woff2') format('woff2');
 }
 
 @font-face {
 	font-family: Unbounded;
 	font-style: normal;
 	font-weight: bold;
-	font-display: optional;
-	src: url('/Unbounded-Bold.woff2') format('woff2');
+	font-display: block;
+	src: local('Unbounded-Bold'), local('Unbounded Bold'),
+		url('/Unbounded-Bold.woff2') format('woff2');
 }
 
 html {
@@ -41,7 +43,8 @@ html,
 body {
 	padding: 0;
 	margin: 0;
-	font-family: Unbounded, serif, Helvetica Neue, sans-serif;
+	font-family: Unbounded, arial black, arial, Helvetica Neue, Helvetica,
+		sans-serif;
 	text-rendering: optimizeLegibility;
 	color: var(--font-color);
 	background: var(--bg-color);
