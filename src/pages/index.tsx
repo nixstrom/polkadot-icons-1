@@ -8,12 +8,6 @@ import { icons } from '@icons/icons'
 import { useCustomisationContext } from '@hooks/useCustomisationContext'
 import styles from '@styles/Home.module.css'
 
-const getColorScheme = () =>
-	typeof window !== 'undefined' &&
-	window.matchMedia('(prefers-color-scheme: dark)').matches
-		? 'dark'
-		: 'light'
-
 export default function Home() {
 	const { strokeColor, strokeWidth, iconSize, setStrokeColor } =
 		useCustomisationContext()
@@ -29,11 +23,6 @@ export default function Home() {
 			FileSaver.saveAs(content, 'polkadot-icons.zip')
 		})
 	}
-
-	useEffect(() => {
-		// prevents hydration error when in light mode
-		setStrokeColor(getColorScheme() === 'dark' ? '#ffffff' : '#000000')
-	}, [setStrokeColor])
 
 	return (
 		<div className={styles.container}>
