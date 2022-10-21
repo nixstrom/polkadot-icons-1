@@ -4,12 +4,14 @@ export type CustomisationContext = {
 	readonly strokeColor: string
 	readonly strokeWidth: string
 	readonly iconSize: string
+	readonly cornerType: 'round' | 'square'
 }
 
 const initialState: CustomisationContext = {
 	strokeColor: '#ffffff',
 	strokeWidth: '2',
 	iconSize: '24',
+	cornerType: 'round',
 }
 
 type Noop = () => void

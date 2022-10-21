@@ -10,7 +10,8 @@ type Props = {
 type Status = 'loading' | 'error' | 'success'
 
 export const useIcon = ({ iconName, containerRef, containerHasRef }: Props) => {
-	const { strokeColor, strokeWidth, iconSize } = useCustomisationContext()
+	const { strokeColor, strokeWidth, cornerType, iconSize } =
+		useCustomisationContext()
 	const [svg, setSvg] = useState<string>('')
 	const [status, setStatus] = useState<Status>('loading')
 	const iconRef = useRef<SVGElement | null>(null)
@@ -31,6 +32,7 @@ export const useIcon = ({ iconName, containerRef, containerHasRef }: Props) => {
 
 			paths.forEach(p => {
 				p.setAttribute('stroke', newColor)
+				//	p.setAttribute('stroke-linecap', 'butt')
 			})
 		}
 	}
@@ -41,6 +43,19 @@ export const useIcon = ({ iconName, containerRef, containerHasRef }: Props) => {
 
 			paths.forEach(p => {
 				p.setAttribute('stroke-width', newStrokeWidth)
+			})
+		}
+	}
+
+	const changeCornerType = (newCornerType: string) => {
+		if (iconRef.current) {
+			const paths = iconRef.current?.querySelectorAll('path') || []
+			const [linecap, linejoin] =
+				newCornerType === 'round' ? ['round', 'round'] : ['square', 'miter']
+
+			paths.forEach(p => {
+				p.setAttribute('stroke-linecap', linecap)
+				p.setAttribute('stroke-linejoin', linejoin)
 			})
 		}
 	}
@@ -58,6 +73,10 @@ export const useIcon = ({ iconName, containerRef, containerHasRef }: Props) => {
 	useEffect(
 		() => changeStrokeWidth(strokeWidth),
 		[containerHasRef, strokeWidth, hasRef],
+	)
+	useEffect(
+		() => changeCornerType(cornerType),
+		[containerHasRef, cornerType, hasRef],
 	)
 	useEffect(() => changeSize(iconSize), [containerHasRef, iconSize, hasRef])
 

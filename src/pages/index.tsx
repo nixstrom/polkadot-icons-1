@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import Head from 'next/head'
 import JSZip from 'jszip'
 import FileSaver from 'file-saver'
@@ -9,8 +8,7 @@ import { useCustomisationContext } from '@hooks/useCustomisationContext'
 import styles from '@styles/Home.module.css'
 
 export default function Home() {
-	const { strokeColor, strokeWidth, iconSize, setStrokeColor } =
-		useCustomisationContext()
+	const { strokeColor, strokeWidth, iconSize } = useCustomisationContext()
 
 	const handleOnDownload = () => {
 		const zip = new JSZip()

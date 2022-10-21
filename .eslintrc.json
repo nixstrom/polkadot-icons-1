@@ -42,7 +42,8 @@
 		"react/react-in-jsx-scope": "off", // No need to import React with Next.js
 		"jsx-a11y/anchor-is-valid": "off", // This rule is not compatible with Next.JS"s <Link />
 		"jsx-a11y/label-has-associated-control": "off", // Hard to enforce with modular components
-		"functional/no-return-void": "off" // This happens too often with useState
+		"functional/no-return-void": "off", // This happens too often with useState
+		"functional/no-mixed-type": "off" // We want to be able to pass functions as props
 	},
 	"settings": {
 		"react": {

@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react'
+import { useContext, useState, useEffect, useCallback } from 'react'
 import {
 	context as CustomisationContext,
 	type CustomisationContext as CustomisationContextType,
@@ -14,11 +14,19 @@ export const useCustomisationContext = () => {
 	const [state, setState] = useContext(CustomisationContext)
 	const [hasConfiguredTheme, setHasConfiguredTheme] = useState(false)
 
-	const setStrokeColor = (newColor: CustomisationContextType['strokeColor']) =>
-		setState(prevState => ({ ...prevState, strokeColor: newColor }))
+	const setStrokeColor = useCallback(
+		(newColor: CustomisationContextType['strokeColor']) => {
+			setState(prevState => ({ ...prevState, strokeColor: newColor }))
+		},
+		[setState],
+	)
 
 	const setStrokeWidth = (newWidth: CustomisationContextType['strokeWidth']) =>
 		setState(prevState => ({ ...prevState, strokeWidth: newWidth }))
+
+	const setCornerType = (
+		newCornerType: CustomisationContextType['cornerType'],
+	) => setState(prevState => ({ ...prevState, cornerType: newCornerType }))
 
 	const setIconSize = (newSize: CustomisationContextType['iconSize']) =>
 		setState(prevState => ({ ...prevState, iconSize: newSize }))
@@ -32,5 +40,11 @@ export const useCustomisationContext = () => {
 		}
 	}, [setStrokeColor, hasConfiguredTheme])
 
-	return { ...state, setStrokeColor, setStrokeWidth, setIconSize }
+	return {
+		...state,
+		setStrokeColor,
+		setStrokeWidth,
+		setCornerType,
+		setIconSize,
+	}
 }

@@ -2,6 +2,7 @@ import { Box } from '@components/Box/Box'
 import { InputLabel } from '@components/InputLabel/InputLabel'
 import { ColorInput } from '@components/ColorInput/ColorInput'
 import { RangeInput } from '@components/RangeInput/RangeInput'
+import { Select } from '@components/Select/Select'
 import { useCustomisationContext } from '@hooks/useCustomisationContext'
 import styles from './Header.module.css'
 
@@ -11,12 +12,23 @@ export const Header = () => {
 		setStrokeColor,
 		strokeWidth,
 		setStrokeWidth,
+		cornerType,
+		setCornerType,
 		iconSize,
 		setIconSize,
 	} = useCustomisationContext()
 
 	return (
 		<Box as="header" className={styles.header}>
+			<InputLabel>
+				<b>Corner:</b>
+				<Select
+					value={cornerType}
+					options={['round', 'square']}
+					onChange={setCornerType}
+				/>
+			</InputLabel>
+
 			<InputLabel>
 				<b>Stroke colour:</b>
 				<ColorInput value={strokeColor} onChange={setStrokeColor} />
