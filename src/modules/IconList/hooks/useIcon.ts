@@ -1,5 +1,12 @@
-import { useState, useEffect, useRef, type MutableRefObject } from 'react'
+import {
+	useState,
+	useEffect,
+	useCallback,
+	useRef,
+	type MutableRefObject,
+} from 'react'
 import { useCustomisationContext } from '@hooks/useCustomisationContext'
+import type { CustomisationContext as CustomisationContextType } from '@providers/CustomisationProvider'
 
 type Props = {
 	readonly iconName: string
@@ -10,7 +17,7 @@ type Props = {
 type Status = 'loading' | 'error' | 'success'
 
 export const useIcon = ({ iconName, containerRef, containerHasRef }: Props) => {
-	const { strokeColor, strokeWidth, cornerType, iconSize } =
+	const { strokeColor, strokeWidth, fillColor, cornerType, iconSize, style } =
 		useCustomisationContext()
 	const [svg, setSvg] = useState<string>('')
 	const [status, setStatus] = useState<Status>('loading')
@@ -32,7 +39,16 @@ export const useIcon = ({ iconName, containerRef, containerHasRef }: Props) => {
 
 			paths.forEach(p => {
 				p.setAttribute('stroke', newColor)
-				//	p.setAttribute('stroke-linecap', 'butt')
+			})
+		}
+	}
+
+	const changeFillColor = (newColor: string) => {
+		if (iconRef.current) {
+			const paths = iconRef.current?.querySelectorAll('path') || []
+
+			paths.forEach(p => {
+				p.setAttribute('fill', newColor)
 			})
 		}
 	}
@@ -67,6 +83,32 @@ export const useIcon = ({ iconName, containerRef, containerHasRef }: Props) => {
 		}
 	}
 
+	const changeStyle = useCallback(
+		(newStyle: CustomisationContextType['style']) => {
+			if (iconRef.current) {
+				const paths = iconRef.current?.querySelectorAll('path') || []
+
+				if (newStyle === 'solid') {
+					paths.forEach(p => {
+						p.setAttribute('fill', fillColor)
+						p.setAttribute('stroke', fillColor)
+					})
+				} else if (newStyle === 'keyline') {
+					paths.forEach(p => {
+						p.setAttribute('fill', 'none')
+						p.setAttribute('stroke', strokeColor)
+					})
+				} else {
+					paths.forEach(p => {
+						p.setAttribute('fill', fillColor)
+						p.setAttribute('stroke', strokeColor)
+					})
+				}
+			}
+		},
+		[fillColor, strokeColor],
+	)
+
 	useEffect(() => {
 		changeStrokeColor(strokeColor)
 	}, [containerHasRef, strokeColor, hasRef, status])
@@ -74,11 +116,19 @@ export const useIcon = ({ iconName, containerRef, containerHasRef }: Props) => {
 		() => changeStrokeWidth(strokeWidth),
 		[containerHasRef, strokeWidth, hasRef],
 	)
+	useEffect(() => {
+		changeFillColor(fillColor)
+	}, [containerHasRef, fillColor, hasRef, status])
 	useEffect(
 		() => changeCornerType(cornerType),
 		[containerHasRef, cornerType, hasRef],
 	)
 	useEffect(() => changeSize(iconSize), [containerHasRef, iconSize, hasRef])
+
+	useEffect(
+		() => changeStyle(style),
+		[containerHasRef, style, changeStyle, hasRef],
+	)
 
 	useEffect(() => {
 		if (containerHasRef && containerRef.current && !iconRef.current) {

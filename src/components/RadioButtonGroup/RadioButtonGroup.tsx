@@ -1,0 +1,57 @@
+import type { MouseEvent } from 'react'
+import type { CustomisationContext } from '@providers/CustomisationProvider'
+import styles from './RadioButtonGroup.module.css'
+
+type Props = {
+	readonly value: string
+	readonly label: string
+	readonly className?: string
+	readonly options: ReadonlyArray<string>
+	readonly onChange: (val: CustomisationContext['style']) => void
+}
+
+export const RadioButtonGroup = ({
+	value,
+	label,
+	options,
+	className,
+	onChange,
+}: Props) => (
+	<fieldset
+		className={`${className} ${styles.radioButtonGroup}`}
+		role="radiogroup"
+	>
+		<legend className={styles.hiddenLegend}>{label}</legend>
+		<div aria-hidden="true" className={styles.visibleLegend}>
+			{label}
+		</div>
+		{options.map(option => (
+			<RadioButton
+				key={option}
+				selected={option === value}
+				onClick={() => onChange(option as CustomisationContext['style'])}
+			>
+				{option}
+			</RadioButton>
+		))}
+	</fieldset>
+)
+
+const RadioButton = ({
+	selected,
+	onClick,
+	children,
+}: {
+	readonly selected: boolean
+	readonly onClick: (e: MouseEvent<HTMLButtonElement>) => void
+	readonly children: string
+}) => (
+	<button
+		className={`${styles.button} ${selected ? styles.buttonSelected : ''}`}
+		role="radio"
+		aria-checked={selected}
+		{...{ onClick }}
+	>
+		{children}
+	</button>
+)

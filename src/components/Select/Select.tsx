@@ -21,8 +21,10 @@ export const Select = ({ value, options, className, onChange }: Props) => {
 	const handleOnClick = () => setStatus('active')
 
 	const handleOnKeyDownWrapper = (event: KeyboardEvent) => {
-		// prevent page scroll when using arrows
-		event.preventDefault()
+		if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+			// prevent page scroll when using arrows
+			event.preventDefault()
+		}
 
 		if (event.key === 'Enter') {
 			if (status === 'active') {

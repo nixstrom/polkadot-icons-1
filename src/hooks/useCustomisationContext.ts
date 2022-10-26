@@ -31,6 +31,12 @@ export const useCustomisationContext = () => {
 	const setIconSize = (newSize: CustomisationContextType['iconSize']) =>
 		setState(prevState => ({ ...prevState, iconSize: newSize }))
 
+	const setStyle = (newStyle: CustomisationContextType['style']) =>
+		setState(prevState => ({ ...prevState, style: newStyle }))
+
+	const setFillColor = (newColor: CustomisationContextType['fillColor']) =>
+		setState(prevState => ({ ...prevState, fillColor: newColor }))
+
 	useEffect(() => {
 		if (!hasConfiguredTheme) {
 			// prevents hydration error when in light mode
@@ -45,6 +51,8 @@ export const useCustomisationContext = () => {
 		setStrokeColor,
 		setStrokeWidth,
 		setCornerType,
+		setFillColor,
 		setIconSize,
+		setStyle,
 	}
 }

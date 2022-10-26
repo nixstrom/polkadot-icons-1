@@ -2,6 +2,7 @@ import { Box } from '@components/Box/Box'
 import { InputLabel } from '@components/InputLabel/InputLabel'
 import { ColorInput } from '@components/ColorInput/ColorInput'
 import { RangeInput } from '@components/RangeInput/RangeInput'
+import { RadioButtonGroup } from '@components/RadioButtonGroup/RadioButtonGroup'
 import { Select } from '@components/Select/Select'
 import { useCustomisationContext } from '@hooks/useCustomisationContext'
 import styles from './Header.module.css'
@@ -16,10 +17,21 @@ export const Header = () => {
 		setCornerType,
 		iconSize,
 		setIconSize,
+		style,
+		setStyle,
+		fillColor,
+		setFillColor,
 	} = useCustomisationContext()
 
 	return (
 		<Box as="header" className={styles.header}>
+			<RadioButtonGroup
+				label="Style"
+				value={style}
+				options={['keyline', 'solid', '2 color']}
+				onChange={setStyle}
+			/>
+
 			<InputLabel>
 				<b>Corner:</b>
 				<Select
@@ -29,10 +41,19 @@ export const Header = () => {
 				/>
 			</InputLabel>
 
-			<InputLabel>
-				<b>Stroke colour:</b>
-				<ColorInput value={strokeColor} onChange={setStrokeColor} />
-			</InputLabel>
+			{style !== 'solid' && (
+				<InputLabel>
+					<b>Stroke colour:</b>
+					<ColorInput value={strokeColor} onChange={setStrokeColor} />
+				</InputLabel>
+			)}
+
+			{style !== 'keyline' && (
+				<InputLabel>
+					<b>Fill colour:</b>
+					<ColorInput value={fillColor} onChange={setFillColor} />
+				</InputLabel>
+			)}
 
 			<InputLabel>
 				<b>Stroke width:</b>

@@ -3,15 +3,19 @@ import { createContext, Dispatch, SetStateAction, useState } from 'react'
 export type CustomisationContext = {
 	readonly strokeColor: string
 	readonly strokeWidth: string
+	readonly fillColor: string
 	readonly iconSize: string
 	readonly cornerType: 'round' | 'square'
+	readonly style: 'keyline' | 'solid' | '2 color'
 }
 
 const initialState: CustomisationContext = {
 	strokeColor: '#ffffff',
 	strokeWidth: '2',
+	fillColor: '#ffffff',
 	iconSize: '24',
 	cornerType: 'round',
+	style: 'keyline',
 }
 
 type Noop = () => void
