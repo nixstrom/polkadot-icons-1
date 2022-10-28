@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import JSZip from 'jszip'
 import FileSaver from 'file-saver'
+import { Button } from '@components/Button/Button'
 import { Header } from '@modules/Header/Header'
 import { IconList } from '@modules/IconList/IconList'
 import { icons } from '@icons/icons'
@@ -48,9 +49,9 @@ export default function Home() {
 
 				<IconList />
 
-				<button className={styles.buttonOutline} onClick={handleOnDownload}>
+				<Button size="large" onClick={handleOnDownload}>
 					Download all
-				</button>
+				</Button>
 			</main>
 		</div>
 	)

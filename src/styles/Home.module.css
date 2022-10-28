@@ -20,19 +20,3 @@
 .header input {
 	margin: 1rem 0;
 }
-
-.buttonOutline {
-	display: inline-block;
-	border: solid 2px #000;
-	border-radius: 100px;
-	background-color: transparent;
-	padding: 0.5em 1em;
-	font-size: 1rem;
-	cursor: pointer;
-}
-
-@media (prefers-color-scheme: dark) {
-	.buttonOutline {
-		border-color: #fff;
-	}
-}

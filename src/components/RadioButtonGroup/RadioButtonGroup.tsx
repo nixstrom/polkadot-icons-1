@@ -1,5 +1,6 @@
 import type { MouseEvent } from 'react'
 import type { CustomisationContext } from '@providers/CustomisationProvider'
+import { Button } from '@components/Button/Button'
 import styles from './RadioButtonGroup.module.css'
 
 type Props = {
@@ -46,12 +47,13 @@ const RadioButton = ({
 	readonly onClick: (e: MouseEvent<HTMLButtonElement>) => void
 	readonly children: string
 }) => (
-	<button
-		className={`${styles.button} ${selected ? styles.buttonSelected : ''}`}
+	<Button
+		className={`${selected ? styles.buttonSelected : ''}`}
 		role="radio"
 		aria-checked={selected}
+		state={`${selected ? 'selected' : 'normal'}`}
 		{...{ onClick }}
 	>
 		{children}
-	</button>
+	</Button>
 )
