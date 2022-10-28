@@ -4,8 +4,8 @@
 	align-items: center;
 	border: 0;
 	gap: 0.5rem;
-	/* padding-left: 0.75rem; */
-	padding-left: 10px;
+	padding: 0;
+	margin: 0;
 	overflow: hidden;
 }
 
@@ -24,7 +24,6 @@
 }
 
 .visibleLegend {
-	text-transform: uppercase;
 	font-weight: bold;
 }
 
@@ -57,4 +56,5 @@
 .buttonSelected {
 	background-color: var(--interaction-color);
 	color: var(--inverse-color);
+	white-space: nowrap;
 }

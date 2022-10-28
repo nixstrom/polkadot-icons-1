@@ -37,7 +37,7 @@ export const IconList = () => (
 		{publicIcons.map(icon => (
 			<li className={styles.listItem} key={icon}>
 				<Icon iconName={icon} />
-				<small className={styles.iconName}>{icon}</small>
+				<small>{icon}</small>
 			</li>
 		))}
 	</Box>

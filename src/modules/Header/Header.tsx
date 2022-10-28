@@ -25,15 +25,17 @@ export const Header = () => {
 
 	return (
 		<Box as="header" className={styles.header}>
+			<h2 className={styles.title}>Customize</h2>
 			<RadioButtonGroup
 				label="Style"
 				value={style}
 				options={['keyline', 'solid', '2 color']}
+				className={styles.styleModule}
 				onChange={setStyle}
 			/>
 
-			<InputLabel>
-				<b>Corner:</b>
+			<InputLabel className={styles.cornerTypeModule}>
+				<b>Corner</b>
 				<Select
 					value={cornerType}
 					options={['round', 'square']}
@@ -43,20 +45,22 @@ export const Header = () => {
 
 			{style !== 'solid' && (
 				<InputLabel>
-					<b>Stroke colour:</b>
+					<b>Stroke color</b>
 					<ColorInput value={strokeColor} onChange={setStrokeColor} />
 				</InputLabel>
 			)}
 
 			{style !== 'keyline' && (
 				<InputLabel>
-					<b>Fill colour:</b>
+					<b>Fill color</b>
 					<ColorInput value={fillColor} onChange={setFillColor} />
 				</InputLabel>
 			)}
 
+			{style !== '2 color' && <div className={styles.dummyContainer} />}
+
 			<InputLabel>
-				<b>Stroke width:</b>
+				<b>Stroke width</b>
 				<RangeInput
 					min="1"
 					max="2.5"
@@ -67,7 +71,7 @@ export const Header = () => {
 				<span className={styles.strokeWidthValue}>{strokeWidth} px</span>
 			</InputLabel>
 			<InputLabel>
-				<b>Size:</b>
+				<b>Size</b>
 				<RangeInput
 					min="12"
 					max="48"

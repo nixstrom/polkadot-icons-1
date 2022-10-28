@@ -46,6 +46,7 @@ body {
 	font-family: Unbounded, arial black, arial, Helvetica Neue, Helvetica,
 		sans-serif;
 	text-rendering: optimizeLegibility;
+	text-transform: uppercase;
 	color: var(--font-color);
 	background: var(--bg-color);
 }
