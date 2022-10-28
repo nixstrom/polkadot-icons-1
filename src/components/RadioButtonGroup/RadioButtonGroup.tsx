@@ -1,23 +1,22 @@
 import type { MouseEvent } from 'react'
-import type { CustomisationContext } from '@providers/CustomisationProvider'
 import { Button } from '@components/Button/Button'
 import styles from './RadioButtonGroup.module.css'
 
-type Props = {
-	readonly value: string
+type Props<Value> = {
+	readonly value: Value
 	readonly label: string
 	readonly className?: string
-	readonly options: ReadonlyArray<string>
-	readonly onChange: (val: CustomisationContext['style']) => void
+	readonly options: ReadonlyArray<Value>
+	readonly onChange: (val: Value) => void
 }
 
-export const RadioButtonGroup = ({
+export const RadioButtonGroup = <Value extends string>({
 	value,
 	label,
 	options,
 	className,
 	onChange,
-}: Props) => (
+}: Props<Value>) => (
 	<fieldset
 		className={`${className} ${styles.radioButtonGroup}`}
 		role="radiogroup"
@@ -28,11 +27,11 @@ export const RadioButtonGroup = ({
 		</div>
 		{options.map(option => (
 			<RadioButton
-				key={option}
+				key={String(option)}
 				selected={option === value}
-				onClick={() => onChange(option as CustomisationContext['style'])}
+				onClick={() => onChange(option as Value)}
 			>
-				{option}
+				{String(option)}
 			</RadioButton>
 		))}
 	</fieldset>

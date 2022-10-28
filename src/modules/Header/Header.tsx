@@ -4,10 +4,14 @@ import { ColorInput } from '@components/ColorInput/ColorInput'
 import { RangeInput } from '@components/RangeInput/RangeInput'
 import { RadioButtonGroup } from '@components/RadioButtonGroup/RadioButtonGroup'
 import { Select } from '@components/Select/Select'
+import { useThemeContext } from '@hooks/useThemeContext'
 import { useCustomisationContext } from '@hooks/useCustomisationContext'
+import type { ThemeContext as ThemeContextType } from '@providers/ThemeProvider'
+import type { CustomisationContext as CustomisationContextType } from '@providers/CustomisationProvider'
 import styles from './Header.module.css'
 
 export const Header = () => {
+	const { theme, setTheme } = useThemeContext()
 	const {
 		strokeColor,
 		setStrokeColor,
@@ -26,7 +30,15 @@ export const Header = () => {
 	return (
 		<Box as="header" className={styles.header}>
 			<h2 className={styles.title}>Customize</h2>
-			<RadioButtonGroup
+			<RadioButtonGroup<ThemeContextType['theme']>
+				label="Theme"
+				value={theme}
+				options={['light', 'dark']}
+				className={styles.themeModule}
+				onChange={setTheme}
+			/>
+
+			<RadioButtonGroup<CustomisationContextType['style']>
 				label="Style"
 				value={style}
 				options={['keyline', 'solid', '2 color']}

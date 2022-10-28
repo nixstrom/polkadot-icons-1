@@ -1,5 +1,25 @@
+.light {
+	--bg-color: white;
+	--font-color: black;
+	--inverse-color: var(--bg-color);
+	--interaction-color: black;
+	--element-hover-bg-color: hsl(0, 0%, 88%);
+	--box-shadow: 0 0 34px hsla(0, 0%, 0%, 0.25);
+}
+
+.dark {
+	--bg-color: black;
+	--font-color: white;
+	--inverse-color: var(--bg-color);
+	--interaction-color: white;
+	--element-hover-bg-color: hsl(0, 0%, 18%);
+	--box-shadow: 0 0 34px hsl(0, 0%, 100%, 0.25);
+}
+
 .container {
 	padding: 0 2rem;
+	color: var(--font-color);
+	background: var(--bg-color);
 }
 
 .main {

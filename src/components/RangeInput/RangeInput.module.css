@@ -5,6 +5,7 @@
 	height: var(--range-input-height);
 	margin: 0 10px;
 	background: transparent;
+	color: var(--font-color);
 	vertical-align: middle;
 }
 .input:focus {

@@ -1,8 +1,5 @@
 :root {
-	--bg-color: white;
-	--inverse-color: var(--bg-color);
-	--interaction-color: black;
-	--font-color: black;
+	/* See theme colours in Home.module.css */
 	--font-size-base: 16px;
 	--font-size-small: 0.5rem;
 	--font-size-regular: 0.75rem;
@@ -47,8 +44,6 @@ body {
 		sans-serif;
 	text-rendering: optimizeLegibility;
 	text-transform: uppercase;
-	color: var(--font-color);
-	background: var(--bg-color);
 }
 
 a {
@@ -62,16 +57,4 @@ small {
 
 * {
 	box-sizing: border-box;
-}
-
-@media (prefers-color-scheme: dark) {
-	:root {
-		--bg-color: black;
-		--font-color: white;
-		--interaction-color: white;
-	}
-
-	html {
-		color-scheme: dark;
-	}
 }

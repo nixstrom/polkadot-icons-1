@@ -2,8 +2,8 @@ import type { ButtonHTMLAttributes } from 'react'
 import styles from './Button.module.css'
 
 type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
-	state?: 'normal' | 'selected'
-	size?: 'normal' | 'large'
+	readonly state?: 'normal' | 'selected'
+	readonly size?: 'normal' | 'large'
 }
 
 export const Button = ({ className, size, state, ...props }: Props) => (

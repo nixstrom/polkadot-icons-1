@@ -1,18 +1,10 @@
 .radioButtonGroup {
-	--hover-bg-color: hsl(0, 0%, 88%);
 	display: flex;
 	align-items: center;
 	border: 0;
 	gap: 0.5rem;
 	padding: 0;
 	margin: 0;
-}
-
-@media (prefers-color-scheme: dark) {
-	.radioButtonGroup {
-		--hover-bg-color: hsl(0, 0%, 18%);
-		--element-color: white;
-	}
 }
 
 .hiddenLegend {

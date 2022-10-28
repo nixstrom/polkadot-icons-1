@@ -1,18 +1,13 @@
-import { useContext, useState, useEffect, useCallback } from 'react'
+import { useContext, useEffect, useCallback } from 'react'
 import {
 	context as CustomisationContext,
 	type CustomisationContext as CustomisationContextType,
 } from '@providers/CustomisationProvider'
-
-const getColorScheme = () =>
-	typeof window !== 'undefined' &&
-	window.matchMedia('(prefers-color-scheme: dark)').matches
-		? 'dark'
-		: 'light'
+import { useThemeContext } from '@hooks/useThemeContext'
 
 export const useCustomisationContext = () => {
+	const { theme } = useThemeContext()
 	const [state, setState] = useContext(CustomisationContext)
-	const [hasConfiguredTheme, setHasConfiguredTheme] = useState(false)
 
 	const setStrokeColor = useCallback(
 		(newColor: CustomisationContextType['strokeColor']) => {
@@ -34,17 +29,16 @@ export const useCustomisationContext = () => {
 	const setStyle = (newStyle: CustomisationContextType['style']) =>
 		setState(prevState => ({ ...prevState, style: newStyle }))
 
-	const setFillColor = (newColor: CustomisationContextType['fillColor']) =>
-		setState(prevState => ({ ...prevState, fillColor: newColor }))
+	const setFillColor = useCallback(
+		(newColor: CustomisationContextType['fillColor']) =>
+			setState(prevState => ({ ...prevState, fillColor: newColor })),
+		[setState],
+	)
 
 	useEffect(() => {
-		if (!hasConfiguredTheme) {
-			// prevents hydration error when in light mode
-			setStrokeColor(getColorScheme() === 'dark' ? '#ffffff' : '#000000')
-
-			setHasConfiguredTheme(true)
-		}
-	}, [setStrokeColor, hasConfiguredTheme])
+		setStrokeColor(theme === 'dark' ? '#ffffff' : '#000000')
+		setFillColor(theme === 'dark' ? '#ffffff' : '#000000')
+	}, [setStrokeColor, setFillColor, theme])
 
 	return {
 		...state,
