@@ -4,6 +4,7 @@ import FileSaver from 'file-saver'
 import { Button } from '@components/Button/Button'
 import { Search } from '@modules/Search/Search'
 import { Header } from '@modules/Header/Header'
+import { AnimatedHero } from '@modules/AnimatedHero/AnimatedHero'
 import { IconList } from '@modules/IconList/IconList'
 import { icons } from '@icons/icons'
 import { useThemeContext } from '@hooks/useThemeContext'
@@ -47,6 +48,7 @@ export default function Home() {
 					crossOrigin="anonymous"
 				/>
 			</Head>
+			<AnimatedHero />
 			<main className={styles.main}>
 				<Search />
 				<Header />

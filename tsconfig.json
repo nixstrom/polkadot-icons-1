@@ -21,7 +21,8 @@
 			"@styles/*": ["styles/*"],
 			"@icons/*": ["icons/*"],
 			"@hooks/*": ["hooks/*"],
-			"@providers/*": ["providers/*"]
+			"@providers/*": ["providers/*"],
+			"@lotties/*": ["lotties/*"]
 		}
 	},
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

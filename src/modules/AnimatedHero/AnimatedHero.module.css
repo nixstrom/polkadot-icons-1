@@ -1,0 +1,15 @@
+.AnimatedHero {
+	---min-width: 1000px;
+	--width-to-height-ratio: (1000/302);
+	display: flex;
+	justify-content: center;
+	overflow: hidden;
+}
+
+.lottie {
+	flex: 1;
+	min-width: var(---min-width);
+	/* prevent layout shift after loading */
+	height: calc((100vw / var(--width-to-height-ratio)));
+	min-height: calc(var(---min-width) / var(--width-to-height-ratio));
+}
