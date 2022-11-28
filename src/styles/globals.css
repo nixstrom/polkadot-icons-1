@@ -6,6 +6,8 @@
 	--font-size-regular: 0.75rem;
 	--font-size-large: 1rem;
 	--font-size-xlarge: 1.25rem;
+	--font-family: Unbounded, arial black, arial, Helvetica Neue, Helvetica,
+		sans-serif;
 	--border-radius: 20px;
 	--transition-speed: 0.3s;
 	--transition-speed-slow: 1s;
@@ -41,8 +43,7 @@ html,
 body {
 	padding: 0;
 	margin: 0;
-	font-family: Unbounded, arial black, arial, Helvetica Neue, Helvetica,
-		sans-serif;
+	font-family: var(--font-family);
 	text-rendering: optimizeLegibility;
 	text-transform: uppercase;
 }

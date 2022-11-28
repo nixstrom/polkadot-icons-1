@@ -2,6 +2,7 @@ import Head from 'next/head'
 import JSZip from 'jszip'
 import FileSaver from 'file-saver'
 import { Button } from '@components/Button/Button'
+import { TopBar } from '@modules/TopBar/TopBar'
 import { Search } from '@modules/Search/Search'
 import { Header } from '@modules/Header/Header'
 import { AnimatedHero } from '@modules/AnimatedHero/AnimatedHero'
@@ -48,6 +49,7 @@ export default function Home() {
 					crossOrigin="anonymous"
 				/>
 			</Head>
+			<TopBar />
 			<AnimatedHero />
 			<main className={styles.main}>
 				<Search />

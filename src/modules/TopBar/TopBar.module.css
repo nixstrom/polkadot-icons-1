@@ -1,0 +1,145 @@
+.TopBar {
+	display: flex;
+	justify-content: space-between;
+	padding: 1.25rem 1.5rem;
+}
+
+/* === LOGO ================================================================  */
+
+.logo {
+	background-image: url('/logo.svg');
+	background-repeat: no-repeat;
+	height: 45px;
+	width: 42px;
+	z-index: 100;
+	animation-duration: var(--transition-speed);
+}
+
+.logoNavOpen,
+.logo:hover {
+	animation-name: rotateLogo;
+}
+
+.logoNavClosed {
+	animation-name: rotateLogoReverse;
+	animation-direction: reverse;
+}
+
+.logo path {
+	fill: var(--brand-color) !important;
+	transition: fill var(--transition-speed);
+}
+
+.logoNavOpen path {
+	fill: currentColor !important;
+}
+
+/* === TRIGGER BUTTON ======================================================  */
+
+.trigger {
+	z-index: 100;
+	box-shadow: inset 0 0 0 2px transparent !important;
+}
+
+.triggerNavOpen .triggerOpen {
+	transform: translateY(-100%);
+	opacity: 0;
+}
+.triggerNavOpen .triggerClose {
+	transform: translateY(0);
+	opacity: 1;
+}
+
+.triggerInner {
+	position: relative;
+	height: 1em;
+	display: block;
+	width: 6ch;
+	overflow: hidden;
+}
+
+.triggerInner span {
+	position: absolute;
+	top: 0;
+	right: 0;
+	transition: transform var(--transition-speed), opacity var(--transition-speed);
+}
+
+.triggerMenu {
+	opacity: 1;
+}
+
+.triggerClose {
+	transform: translateY(100%);
+	opacity: 0;
+}
+
+/* === NAVIGATION ==========================================================  */
+
+.nav {
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-items: center;
+	gap: 3rem;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 90;
+	height: 100vh;
+	width: 100vw;
+	margin: 0;
+	padding: 0;
+	background-color: var(--brand-color);
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity var(--transition-speed);
+}
+
+.nav li {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	opacity: 0;
+	transform: translateY(50%);
+	transition: transform var(--transition-speed) ease-out,
+		opacity var(--transition-speed) ease-out;
+}
+
+.navOpen li:nth-child(2) {
+	transition-delay: 0.1s;
+}
+
+.navOpen li:nth-child(3) {
+	transition-delay: 0.2s;
+}
+
+.navOpen {
+	opacity: 1;
+}
+
+.navOpen li {
+	opacity: 1;
+	transform: translateY(0);
+	transition-delay: 0ms;
+}
+
+@keyframes rotateLogo {
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(180deg);
+	}
+}
+
+@keyframes rotateLogoReverse {
+	from {
+		transform: rotate(180deg);
+	}
+
+	to {
+		transform: rotate(0deg);
+	}
+}
