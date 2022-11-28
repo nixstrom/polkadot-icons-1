@@ -51,7 +51,7 @@ export default function Home() {
 			</Head>
 			<TopBar />
 			<AnimatedHero />
-			<main className={styles.main}>
+			<main className={styles.main} style={{ fontFamily: 'Unbounded' }}>
 				<Search />
 				<Header />
 
