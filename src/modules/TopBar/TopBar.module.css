@@ -116,6 +116,7 @@
 
 .navOpen {
 	opacity: 1;
+	pointer-events: all;
 }
 
 .navOpen li {

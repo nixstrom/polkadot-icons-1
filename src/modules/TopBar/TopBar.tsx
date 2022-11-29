@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Logo } from '@icons/Logo'
 import { Button } from '@components/Button/Button'
+import { NavigationLink } from '@components/NavigationLink/NavigationLink'
 import styles from './TopBar.module.css'
 
 export const TopBar = () => {
@@ -46,19 +47,28 @@ export const TopBar = () => {
 				aria-labelledby="menu-button"
 			>
 				<li role="menuitem">
-					<Button size="large" color="transparent">
+					<NavigationLink
+						title="Share on Twitter (opens in new tab)"
+						href="https://twitter.com/share?url=https://unbounded.polkadot.network/&text=This%20is%20Unbounded%20%E2%80%94%20A%20Polkadot%20Typeface"
+					>
 						Share
-					</Button>
+					</NavigationLink>
 				</li>
 				<li role="menuitem">
-					<Button size="large" color="transparent">
+					<NavigationLink
+						title="See code on Github (opens in new tab)"
+						href="https://polkadot.network/"
+					>
 						Github
-					</Button>
+					</NavigationLink>
 				</li>
 				<li role="menuitem">
-					<Button size="large" color="transparent">
+					<NavigationLink
+						title="Download Figma plugin (opens in new tab)"
+						href="https://polkadot.network/"
+					>
 						Figma plugin
-					</Button>
+					</NavigationLink>
 				</li>
 			</ul>
 		</section>

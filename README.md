@@ -7,3 +7,9 @@ First, run the development server:
 ```bash
 pnpm run dev
 ```
+
+## Launch checklist
+
+- Change share link and navigation links in general
+- Set up SEO stuff
+- Change favicon
