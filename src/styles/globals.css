@@ -57,6 +57,11 @@ small {
 	font-size: var(--font-size-small);
 }
 
+.no-scroll {
+	overflow: hidden;
+	padding-right: 15px; /* Avoid width reflow when scrollbar is removed */
+}
+
 * {
 	box-sizing: border-box;
 }

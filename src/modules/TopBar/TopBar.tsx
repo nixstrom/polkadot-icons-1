@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Logo } from '@icons/Logo'
 import { Button } from '@components/Button/Button'
 import { NavigationLink } from '@components/NavigationLink/NavigationLink'
@@ -28,6 +28,14 @@ export const TopBar = () => {
 	const handleOnOpenMenu = () => {
 		setIsNavOpen(!isNavOpen)
 	}
+
+	useEffect(() => {
+		if (isNavOpen) {
+			document.body.classList.add('no-scroll')
+		} else {
+			document.body.classList.remove('no-scroll')
+		}
+	}, [isNavOpen])
 
 	return (
 		<section className={TopBarClasses}>
