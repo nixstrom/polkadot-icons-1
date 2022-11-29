@@ -1,0 +1,30 @@
+.DownloadActions {
+	position: fixed;
+	bottom: 2rem;
+	left: 2rem;
+	right: 2rem;
+	overflow: hidden;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+
+.middleCol {
+	text-align: center;
+	grid-column: 2;
+}
+
+.endCol {
+	text-align: end;
+}
+
+.clear,
+.download {
+	opacity: 1;
+	transform: translateY(0);
+	transition: opacity var(--transition-speed), transform var(--transition-speed);
+}
+
+.hide {
+	opacity: 0;
+	transform: translateY(100%);
+}

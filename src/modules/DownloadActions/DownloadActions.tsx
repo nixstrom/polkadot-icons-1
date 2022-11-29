@@ -1,0 +1,85 @@
+import { useRouter } from 'next/router'
+import JSZip from 'jszip'
+import FileSaver from 'file-saver'
+import { Button } from '@components/Button/Button'
+import { icons } from '@icons/icons'
+import { useSearch } from '@hooks/useSearch'
+import { useSelection } from '@hooks/useSelection'
+import { useCustomisationContext } from '@hooks/useCustomisationContext'
+import styles from './DownloadActions.module.css'
+
+const composeDownloadButtonText = (
+	selectedCount: number,
+	hasSearch: boolean,
+	filteredCount: number,
+) => {
+	if (selectedCount) {
+		return `Download selection (${selectedCount})`
+	} else if (hasSearch && filteredCount) {
+		return `Download (${filteredCount})`
+	}
+
+	return 'Download all'
+}
+
+export const DownloadActions = () => {
+	const router = useRouter()
+	const { icons: filteredIcons } = useSearch()
+	const { selectedIcons, handleOnClear } = useSelection()
+	const { strokeColor, strokeWidth, iconSize } = useCustomisationContext()
+
+	const handleOnDownload = () => {
+		if (filteredIcons.length) {
+			const zip = new JSZip()
+
+			icons.forEach(file => {
+				zip.file(
+					`${file.name}.svg`,
+					file.svg(strokeColor, strokeWidth, iconSize),
+				)
+			})
+
+			zip.generateAsync({ type: 'blob' }).then(function (content) {
+				FileSaver.saveAs(content, 'polkadot-icons.zip')
+			})
+		}
+	}
+
+	const downloadButtonText = composeDownloadButtonText(
+		selectedIcons.length,
+		typeof router.query.search === 'string',
+		filteredIcons.length,
+	)
+
+	const downloadButtonClasses = filteredIcons.length
+		? styles.download
+		: `${styles.download} ${styles.hide}`
+
+	const clearButtonClasses = selectedIcons.length
+		? styles.clear
+		: `${styles.clear} ${styles.hide}`
+
+	return (
+		<footer className={styles.DownloadActions}>
+			<div className={styles.middleCol}>
+				<Button
+					className={downloadButtonClasses}
+					size="large"
+					onClick={handleOnDownload}
+				>
+					{downloadButtonText}
+				</Button>
+			</div>
+			<div className={styles.endCol}>
+				<Button
+					className={clearButtonClasses}
+					size="large"
+					state="selected"
+					onClick={handleOnClear}
+				>
+					Clear selection
+				</Button>
+			</div>
+		</footer>
+	)
+}

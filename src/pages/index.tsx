@@ -1,32 +1,15 @@
 import Head from 'next/head'
-import JSZip from 'jszip'
-import FileSaver from 'file-saver'
-import { Button } from '@components/Button/Button'
 import { TopBar } from '@modules/TopBar/TopBar'
 import { Search } from '@modules/Search/Search'
 import { Header } from '@modules/Header/Header'
 import { AnimatedHero } from '@modules/AnimatedHero/AnimatedHero'
 import { IconList } from '@modules/IconList/IconList'
-import { icons } from '@icons/icons'
+import { DownloadActions } from '@modules/DownloadActions/DownloadActions'
 import { useThemeContext } from '@hooks/useThemeContext'
-import { useCustomisationContext } from '@hooks/useCustomisationContext'
 import styles from '@styles/Home.module.css'
 
 export default function Home() {
 	const { theme } = useThemeContext()
-	const { strokeColor, strokeWidth, iconSize } = useCustomisationContext()
-
-	const handleOnDownload = () => {
-		const zip = new JSZip()
-
-		icons.forEach(file => {
-			zip.file(`${file.name}.svg`, file.svg(strokeColor, strokeWidth, iconSize))
-		})
-
-		zip.generateAsync({ type: 'blob' }).then(function (content) {
-			FileSaver.saveAs(content, 'polkadot-icons.zip')
-		})
-	}
 
 	return (
 		<div
@@ -60,9 +43,7 @@ export default function Home() {
 
 				<IconList />
 
-				<Button size="large" onClick={handleOnDownload}>
-					Download all
-				</Button>
+				<DownloadActions />
 			</main>
 		</div>
 	)

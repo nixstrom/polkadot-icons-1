@@ -6,14 +6,18 @@ export const useSelection = () => {
 
 	const handleOnCheckToggle = (icon: string) => {
 		if (selectedIcons.selected.includes(icon)) {
-			console.log('uncheck')
 			handleOnUncheck(icon)
 		} else {
-			console.log('check')
 			setSelectedIcons(prevState => ({
 				selected: [...prevState.selected, icon],
 			}))
 		}
+	}
+
+	const handleOnClear = () => {
+		setSelectedIcons({
+			selected: [],
+		})
 	}
 
 	const handleOnUncheck = useCallback(
@@ -27,6 +31,7 @@ export const useSelection = () => {
 	return {
 		handleOnCheckToggle,
 		handleOnUncheck,
+		handleOnClear,
 		selectedIcons: selectedIcons.selected,
 	}
 }

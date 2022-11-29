@@ -9,11 +9,10 @@ type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
 
 export const Button = ({ className, size, color, state, ...props }: Props) => (
 	<button
-		className={`${styles.button} ${size === 'large' ? styles.large : ' '}${
-			state === 'selected' ? styles.selected : ' '
-		} ${color === 'transparent' ? styles.transparent : ' '} ${
-			className ? className : ''
-		}`}
+		className={`${styles.button} ${size === 'large' ? styles.large : ' '}
+		${state === 'selected' ? styles.selected : ' '}
+		${color === 'transparent' ? styles.transparent : ' '}
+		${className ? className : ''}`}
 		{...props}
 	/>
 )
