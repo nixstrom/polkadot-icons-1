@@ -4,23 +4,33 @@ import { Button } from '@components/Button/Button'
 import { NavigationLink } from '@components/NavigationLink/NavigationLink'
 import styles from './TopBar.module.css'
 
+const composeCssClasses = (isNavOpen: boolean) =>
+	isNavOpen
+		? {
+				TopBarClasses: `${styles.TopBar} ${styles.TopBarNavOpen}`,
+				navClasses: `${styles.nav} ${styles.navOpen}`,
+				triggerClasses: `${styles.trigger} ${styles.triggerNavOpen}`,
+				logoClasses: `${styles.logo} ${styles.logoNavOpen}`,
+		  }
+		: {
+				TopBarClasses: styles.TopBar,
+				navClasses: styles.nav,
+				triggerClasses: styles.trigger,
+				logoClasses: `${styles.logo} ${styles.logoNavClosed}`,
+		  }
+
 export const TopBar = () => {
 	const [isNavOpen, setIsNavOpen] = useState(false)
 
-	const navClasses = isNavOpen ? `${styles.nav} ${styles.navOpen}` : styles.nav
-	const logoClasses = isNavOpen
-		? `${styles.logo} ${styles.logoNavOpen}`
-		: `${styles.logo} ${styles.logoNavClosed}`
-	const triggerClasses = isNavOpen
-		? `${styles.trigger} ${styles.triggerNavOpen}`
-		: styles.trigger
+	const { TopBarClasses, navClasses, triggerClasses, logoClasses } =
+		composeCssClasses(isNavOpen)
 
 	const handleOnOpenMenu = () => {
 		setIsNavOpen(!isNavOpen)
 	}
 
 	return (
-		<section className={styles.TopBar}>
+		<section className={TopBarClasses}>
 			<Logo className={logoClasses} aria-label="Polkadot logo" />
 
 			<Button

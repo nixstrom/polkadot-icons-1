@@ -4,6 +4,11 @@
 	padding: 1.25rem 1.5rem;
 }
 
+/* text is always white in this context, regardless of darkmode */
+.TopBarNavOpen {
+	--font-color: white;
+}
+
 /* === LOGO ================================================================  */
 
 .logo {
@@ -30,8 +35,9 @@
 	transition: fill var(--transition-speed);
 }
 
+/* fill is always white in this context, regardless of darkmode */
 .logoNavOpen path {
-	fill: currentColor !important;
+	fill: white !important;
 }
 
 /* === TRIGGER BUTTON ======================================================  */
