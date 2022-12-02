@@ -1,6 +1,15 @@
 @font-face {
 	font-family: Unbounded;
 	font-style: normal;
+	font-weight: 100;
+	font-display: block;
+	src: local('Unbounded-ExtraLight'), local('Unbounded ExtraLight'),
+		url('/Unbounded-ExtraLight.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: Unbounded;
+	font-style: normal;
 	font-weight: normal;
 	font-display: block;
 	src: local('Unbounded-Regular'), local('Unbounded Regular'),
