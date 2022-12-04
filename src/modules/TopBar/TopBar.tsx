@@ -80,14 +80,6 @@ export const TopBar = () => {
 						Github
 					</NavigationLink>
 				</li>
-				<li role="menuitem">
-					<NavigationLink
-						title="Download Figma plugin (opens in new tab)"
-						href="https://polkadot.network/"
-					>
-						Figma plugin
-					</NavigationLink>
-				</li>
 			</ul>
 		</section>
 	)
