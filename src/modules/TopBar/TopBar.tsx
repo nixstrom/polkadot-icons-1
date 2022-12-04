@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Logo } from '@icons/Logo'
+import { Close } from '@icons/Close'
 import { Button } from '@components/Button/Button'
 import { NavigationLink } from '@components/NavigationLink/NavigationLink'
 import styles from './TopBar.module.css'
@@ -54,7 +55,9 @@ export const TopBar = () => {
 			>
 				<span className={styles.triggerInner} aria-hidden>
 					<span className={styles.triggerOpen}>Menu</span>
-					<span className={styles.triggerClose}>Close</span>
+					<span className={styles.triggerClose}>
+						<Close />
+					</span>
 				</span>
 			</Button>
 
