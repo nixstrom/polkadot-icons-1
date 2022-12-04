@@ -40,12 +40,19 @@
 }
 
 .button {
-	height: calc(var(--input-height) - (2 * var(--input-padding-block)));
-	border-radius: 50px;
-	padding-inline: 3.75em;
-	font-size: 1rem;
-	position: absolute;
-	right: var(--input-padding-block);
-	top: 50%;
-	transform: translateY(-50%);
+	display: none;
+}
+
+@media (min-width: 720px) {
+	.button {
+		display: block;
+		height: calc(var(--input-height) - (2 * var(--input-padding-block)));
+		border-radius: 50px;
+		padding-inline: 3.75em;
+		font-size: 1rem;
+		position: absolute;
+		right: var(--input-padding-block);
+		top: 50%;
+		transform: translateY(-50%);
+	}
 }
