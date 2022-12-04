@@ -1,6 +1,8 @@
 .AnimatedHero {
 	---min-width: 1000px;
 	--width-to-height-ratio: (1000/302);
+	--min-font-size: 1.31rem;
+	--scaled-font-size: 2.1vw;
 	display: flex;
 	justify-content: center;
 	overflow: hidden;
@@ -18,6 +20,7 @@
 	color: currentColor;
 	text-align: center;
 	font-weight: normal;
+	font-size: max(var(--scaled-font-size), var(--min-font-size));
 	line-height: 1.4;
 	margin-top: 0.2em;
 	letter-spacing: 1px;
