@@ -2,10 +2,8 @@ import { useRouter } from 'next/router'
 import JSZip from 'jszip'
 import FileSaver from 'file-saver'
 import { Button } from '@components/Button/Button'
-import { icons } from '@icons/icons'
 import { useSearch } from '@hooks/useSearch'
 import { useSelection } from '@hooks/useSelection'
-import { useCustomisationContext } from '@hooks/useCustomisationContext'
 import styles from './DownloadActions.module.css'
 
 const composeDownloadButtonText = (
@@ -26,17 +24,23 @@ export const DownloadActions = () => {
 	const router = useRouter()
 	const { icons: filteredIcons } = useSearch()
 	const { selectedIcons, handleOnClear } = useSelection()
-	const { strokeColor, strokeWidth, iconSize } = useCustomisationContext()
 
 	const handleOnDownload = () => {
 		if (filteredIcons.length) {
 			const zip = new JSZip()
 
-			icons.forEach(file => {
-				zip.file(
-					`${file.name}.svg`,
-					file.svg(strokeColor, strokeWidth, iconSize),
+			const iconsToDownload = selectedIcons.length
+				? selectedIcons
+				: filteredIcons
+
+			iconsToDownload.forEach(icon => {
+				const node = document.querySelector(
+					`div[data-download-name="${icon}"] svg`,
 				)
+
+				if (node) {
+					zip.file(`${icon}.svg`, node.outerHTML)
+				}
 			})
 
 			zip.generateAsync({ type: 'blob' }).then(function (content) {

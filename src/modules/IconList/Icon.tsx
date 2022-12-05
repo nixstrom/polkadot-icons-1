@@ -29,6 +29,7 @@ export const Icon = ({ iconName }: { readonly iconName: string }) => {
 			}`}
 			dangerouslySetInnerHTML={{ __html: svg }}
 			ref={handleSetRef}
+			data-download-name={iconName}
 		/>
 	)
 }
