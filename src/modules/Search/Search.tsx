@@ -8,20 +8,22 @@ export const Search = () => {
 	const { inputRef, initialValue, onSearch } = useSearch()
 
 	return (
-		<Box as="div" className={styles.wrapper}>
-			<form onSubmit={onSearch} action="/" method="get">
-				<SearchIcon className={styles.searchIcon} />
-				<input
-					ref={inputRef}
-					placeholder="Search"
-					type="search"
-					className={styles.input}
-					defaultValue={initialValue}
-				/>
-				<Button type="submit" className={styles.button} state="selected">
-					Search
-				</Button>
-			</form>
-		</Box>
+		<div className={styles.Search}>
+			<Box>
+				<form onSubmit={onSearch} action="/" method="get">
+					<SearchIcon className={styles.searchIcon} />
+					<input
+						ref={inputRef}
+						placeholder="Search"
+						type="search"
+						className={styles.input}
+						defaultValue={initialValue}
+					/>
+					<Button type="submit" className={styles.button} state="selected">
+						Search
+					</Button>
+				</form>
+			</Box>
+		</div>
 	)
 }
