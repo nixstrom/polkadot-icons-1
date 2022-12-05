@@ -65,6 +65,7 @@ export const DownloadActions = () => {
 				<Button
 					className={downloadButtonClasses}
 					size="large"
+					state="selected"
 					onClick={handleOnDownload}
 				>
 					{downloadButtonText}
@@ -74,7 +75,6 @@ export const DownloadActions = () => {
 				<Button
 					className={clearButtonClasses}
 					size="large"
-					state="selected"
 					onClick={handleOnClear}
 				>
 					Clear selection
