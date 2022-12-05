@@ -4,10 +4,8 @@
 	--button-padding-inline: 3.75em;
 	--button-width: calc(6ch + (2 * var(--button-padding-inline)));
 	width: 100%;
-	position: sticky;
-	top: 0;
+	position: relative;
 	padding-block: 1rem;
-	z-index: 20;
 	background-color: var(--bg-color);
 }
 
@@ -94,6 +92,14 @@
 		font-size: var(--font-size-xlarge);
 		line-height: 1;
 		right: calc(var(--button-width) + var(--input-padding-block));
+	}
+}
+
+@media (min-width: 1180px) {
+	.Search {
+		position: sticky;
+		top: 0;
+		z-index: 20;
 	}
 }
 

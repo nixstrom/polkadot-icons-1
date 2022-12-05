@@ -1,10 +1,7 @@
 .Header {
 	width: 100%;
 	margin-block-end: 1rem;
-	position: sticky;
-	top: 7rem;
 	padding-block-start: 1rem;
-	z-index: 20;
 	background-color: var(--bg-color);
 	border-radius: 0 0 var(--border-radius) var(--border-radius);
 }
@@ -117,6 +114,13 @@
 }
 
 @media (min-width: 1180px) {
+	.Header {
+		position: sticky;
+		top: 7rem;
+		padding-block-start: 1rem;
+		z-index: 20;
+	}
+
 	.box {
 		grid-template-columns: 1fr 1fr 1fr 1fr;
 	}
