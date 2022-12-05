@@ -5,6 +5,7 @@ import { Header } from '@modules/Header/Header'
 import { AnimatedHero } from '@modules/AnimatedHero/AnimatedHero'
 import { IconList } from '@modules/IconList/IconList'
 import { DownloadActions } from '@modules/DownloadActions/DownloadActions'
+import { Footer } from '@modules/Footer/Footer'
 import { useThemeContext } from '@hooks/useThemeContext'
 import styles from '@styles/Home.module.css'
 
@@ -59,6 +60,8 @@ export default function Home() {
 
 				<DownloadActions />
 			</main>
+
+			<Footer />
 		</div>
 	)
 }

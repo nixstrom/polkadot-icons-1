@@ -1,0 +1,77 @@
+.Footer {
+	text-align: center;
+	padding-block-end: 5rem;
+}
+
+.logo {
+	text-align: center;
+	margin-block-end: 1rem;
+}
+
+.list {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+.list li {
+	margin-block-start: 1rem;
+}
+
+@media (min-width: 720px) {
+	.Footer {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 2.25rem;
+		padding-block-end: 3.25rem;
+	}
+
+	.logo {
+		display: inline;
+		margin-block-end: 0;
+	}
+
+	.list {
+		display: inline-flex;
+	}
+
+	.list li {
+		display: inline;
+		margin-top: 0;
+	}
+
+	.list li:not(:last-child)::after {
+		content: '·';
+		display: inline-block;
+		width: 2.25rem;
+		text-align: center;
+	}
+
+	.list a {
+		position: relative;
+		overflow: hidden;
+		transition: color var(--transition-speed-fast);
+		padding-block-end: 0.25em;
+	}
+
+	.list a::after {
+		display: block;
+		content: '';
+		height: 0.1em;
+		width: 0;
+		background-color: var(--brand-color);
+		position: absolute;
+		bottom: -0.25em;
+		left: 0;
+		transition: width var(--transition-speed-fast) ease-out;
+	}
+
+	.list a:hover {
+		color: var(--brand-color);
+	}
+
+	.list a:hover::after {
+		width: 100%;
+	}
+}

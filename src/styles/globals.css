@@ -38,6 +38,7 @@
 	--border-radius: 20px;
 	--transition-speed: 0.3s;
 	--transition-speed-slow: 1s;
+	--transition-speed-fast: 0.15s;
 }
 
 html {

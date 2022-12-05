@@ -1,8 +1,9 @@
 .DownloadActions {
-	position: fixed;
+	position: sticky;
 	bottom: 2rem;
 	left: 2rem;
 	right: 2rem;
+	margin-block-start: 1rem;
 	overflow: hidden;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
