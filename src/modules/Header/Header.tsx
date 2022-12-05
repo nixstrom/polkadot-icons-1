@@ -9,6 +9,8 @@ import { useCustomisationContext } from '@hooks/useCustomisationContext'
 import type { ThemeContext as ThemeContextType } from '@providers/ThemeProvider'
 import type { CustomisationContext as CustomisationContextType } from '@providers/CustomisationProvider'
 import styles from './Header.module.css'
+import { Sun } from '@icons/Sun'
+import { Moon } from '@icons/Moon'
 
 export const Header = () => {
 	const { theme, setTheme } = useThemeContext()
@@ -106,6 +108,10 @@ export const Header = () => {
 					label="Mode"
 					value={theme}
 					options={['light', 'dark']}
+					renderOptions={[
+						<Sun key="sun" aria-label="Light mode" />,
+						<Moon key="moon" aria-label="Dark mode" />,
+					]}
 					className={styles.themeModule}
 					onChange={setTheme}
 				/>

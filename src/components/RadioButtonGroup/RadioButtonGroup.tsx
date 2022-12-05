@@ -1,4 +1,4 @@
-import type { MouseEvent } from 'react'
+import type { MouseEvent, ReactNode } from 'react'
 import { Button } from '@components/Button/Button'
 import styles from './RadioButtonGroup.module.css'
 
@@ -7,6 +7,7 @@ type Props<Value> = {
 	readonly label: string
 	readonly className?: string
 	readonly options: ReadonlyArray<Value>
+	readonly renderOptions?: ReadonlyArray<ReactNode>
 	readonly onChange: (val: Value) => void
 }
 
@@ -14,6 +15,7 @@ export const RadioButtonGroup = <Value extends string>({
 	value,
 	label,
 	options,
+	renderOptions,
 	className,
 	onChange,
 }: Props<Value>) => (
@@ -23,16 +25,16 @@ export const RadioButtonGroup = <Value extends string>({
 	>
 		<legend className={styles.hiddenLegend}>{label}</legend>
 		<div aria-hidden="true" className={styles.visibleLegend}>
-			{label}
+			{!renderOptions?.[0] && label}
 		</div>
 		<div className={styles.options}>
-			{options.map(option => (
+			{options.map((option, index) => (
 				<RadioButton
 					key={String(option)}
 					selected={option === value}
 					onClick={() => onChange(option as Value)}
 				>
-					{String(option)}
+					{renderOptions?.[index] || String(option)}
 				</RadioButton>
 			))}
 		</div>
@@ -46,7 +48,7 @@ const RadioButton = ({
 }: {
 	readonly selected: boolean
 	readonly onClick: (e: MouseEvent<HTMLButtonElement>) => void
-	readonly children: string
+	readonly children: ReactNode
 }) => (
 	<Button
 		className={`${selected ? styles.buttonSelected : ''}`}
