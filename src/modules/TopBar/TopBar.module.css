@@ -82,6 +82,7 @@
 .triggerClose {
 	transform: translateY(100%);
 	opacity: 0;
+	transition: color var(--transition-speed-fast);
 }
 
 .triggerClose svg {
@@ -91,6 +92,11 @@
 
 .triggerClose:hover {
 	color: black;
+}
+
+.triggerClose:hover svg {
+	animation-name: spin;
+	animation-duration: var(--transition-speed);
 }
 
 /* === NAVIGATION ==========================================================  */
@@ -177,5 +183,15 @@
 	.triggerClose svg {
 		height: 17px;
 		width: 16px;
+	}
+}
+
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(180deg);
 	}
 }
