@@ -1,6 +1,8 @@
 .Search {
 	--input-height: 5rem;
 	--input-padding-block: 1rem;
+	--button-padding-inline: 3.75em;
+	--button-width: calc(6ch + (2 * var(--button-padding-inline)));
 	width: 100%;
 	position: sticky;
 	top: 0;
@@ -47,16 +49,60 @@
 	display: none;
 }
 
+.clear {
+	height: 21px;
+	width: 21px;
+	border-radius: 21px;
+	border: 0;
+	cursor: pointer;
+	background-color: #ccc;
+	position: absolute;
+	right: var(--input-padding-block);
+	top: 50%;
+	transform: translateY(-50%);
+	transition: background-color var(--transition-speed-fast);
+}
+
+.clear:hover {
+	background-color: var(--interaction-color);
+}
+
+.clear:hover svg {
+	animation-name: spin;
+	animation-duration: var(--transition-speed);
+}
+
+.clearIcon path {
+	fill: var(--inverse-color);
+}
+
 @media (min-width: 720px) {
 	.button {
 		display: block;
 		height: calc(var(--input-height) - (2 * var(--input-padding-block)));
+		width: var(--button-width);
 		border-radius: 50px;
-		padding-inline: 3.75em;
+		padding-inline: var(--button-padding-inline);
 		font-size: 1rem;
 		position: absolute;
 		right: var(--input-padding-block);
 		top: 50%;
 		transform: translateY(-50%);
+	}
+
+	.clear {
+		font-size: var(--font-size-xlarge);
+		line-height: 1;
+		right: calc(var(--button-width) + var(--input-padding-block));
+	}
+}
+
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(180deg);
 	}
 }

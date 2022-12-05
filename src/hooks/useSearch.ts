@@ -48,6 +48,13 @@ export const useSearch = () => {
 		}
 	}
 
+	const onClear = () => {
+		if (inputRef.current?.value) {
+			// eslint-disable-next-line functional/immutable-data
+			inputRef.current.value = ''
+		}
+	}
+
 	useEffect(() => {
 		if (typeof router.query.search === 'string') {
 			const icons = publicIcons.filter(icon =>
@@ -64,6 +71,7 @@ export const useSearch = () => {
 		inputRef,
 		initialValue: router.query.search,
 		onSearch,
+		onClear,
 		icons: filteredIcons.icons,
 	}
 }
