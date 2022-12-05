@@ -5,7 +5,7 @@ export type CustomisationContext = {
 	readonly strokeWidth: string
 	readonly fillColor: string
 	readonly iconSize: string
-	readonly cornerType: 'round' | 'square'
+	readonly cornerType: 'round' | 'square' | 'bevel'
 	readonly style: 'keyline' | 'solid' | '2 color'
 }
 

@@ -67,7 +67,11 @@ export const useIcon = ({ iconName, containerRef, containerHasRef }: Props) => {
 		if (iconRef.current) {
 			const paths = iconRef.current?.querySelectorAll('path') || []
 			const [linecap, linejoin] =
-				newCornerType === 'round' ? ['round', 'round'] : ['square', 'miter']
+				newCornerType === 'round'
+					? ['round', 'round']
+					: newCornerType === 'bevel'
+					? ['butt', 'bevel']
+					: ['square', 'miter']
 
 			paths.forEach(p => {
 				p.setAttribute('stroke-linecap', linecap)

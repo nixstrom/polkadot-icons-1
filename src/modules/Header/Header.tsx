@@ -97,7 +97,7 @@ export const Header = () => {
 					<b>Corner</b>
 					<Select
 						value={cornerType}
-						options={['round', 'square']}
+						options={['round', 'square', 'bevel']}
 						onChange={setCornerType}
 					/>
 				</InputLabel>
