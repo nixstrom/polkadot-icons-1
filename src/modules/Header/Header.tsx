@@ -25,19 +25,19 @@ export const Header = () => {
 		setStyle,
 		fillColor,
 		setFillColor,
+		reset,
 	} = useCustomisationContext()
 
 	return (
 		<header className={styles.Header}>
 			<Box className={styles.box}>
 				<h2 className={styles.title}>Customize</h2>
-				<RadioButtonGroup<ThemeContextType['theme']>
-					label="Theme"
-					value={theme}
-					options={['light', 'dark']}
-					className={styles.themeModule}
-					onChange={setTheme}
-				/>
+
+				<div className={styles.resetContainer}>
+					<button className={styles.reset} onClick={reset}>
+						Reset
+					</button>
+				</div>
 
 				<RadioButtonGroup<CustomisationContextType['style']>
 					label="Style"
@@ -46,6 +46,52 @@ export const Header = () => {
 					className={styles.styleModule}
 					onChange={setStyle}
 				/>
+
+				{style !== 'solid' && (
+					<InputLabel className={styles.strokeColorModule}>
+						<b>Line color</b>
+						<ColorInput value={strokeColor} onChange={setStrokeColor} />
+					</InputLabel>
+				)}
+
+				{style !== 'keyline' && (
+					<InputLabel className={styles.fillColorModule}>
+						<b>Fill color</b>
+						<ColorInput value={fillColor} onChange={setFillColor} />
+					</InputLabel>
+				)}
+
+				{style !== '2 color' && <div className={styles.dummyContainer} />}
+
+				<InputLabel className={styles.strokeWidthModule}>
+					<b>Stroke</b>
+					<div className={styles.rangeInputWrapper}>
+						<RangeInput
+							min="1"
+							max="2.5"
+							step="0.5"
+							value={strokeWidth}
+							onChange={setStrokeWidth}
+						/>
+						<span className={styles.strokeWidthValue}>{strokeWidth} px</span>
+					</div>
+				</InputLabel>
+
+				<InputLabel className={styles.sizeModule}>
+					<b>Size</b>
+					<div className={styles.rangeInputWrapper}>
+						<RangeInput
+							min="12"
+							max="48"
+							step="6"
+							value={iconSize}
+							onChange={setIconSize}
+						/>
+						<span className={styles.sizeWidthValue}>
+							{iconSize}×{iconSize} px
+						</span>
+					</div>
+				</InputLabel>
 
 				<InputLabel className={styles.cornerTypeModule}>
 					<b>Corner</b>
@@ -56,46 +102,13 @@ export const Header = () => {
 					/>
 				</InputLabel>
 
-				{style !== 'solid' && (
-					<InputLabel>
-						<b>Stroke color</b>
-						<ColorInput value={strokeColor} onChange={setStrokeColor} />
-					</InputLabel>
-				)}
-
-				{style !== 'keyline' && (
-					<InputLabel>
-						<b>Fill color</b>
-						<ColorInput value={fillColor} onChange={setFillColor} />
-					</InputLabel>
-				)}
-
-				{style !== '2 color' && <div className={styles.dummyContainer} />}
-
-				<InputLabel>
-					<b>Stroke width</b>
-					<RangeInput
-						min="1"
-						max="2.5"
-						step="0.5"
-						value={strokeWidth}
-						onChange={setStrokeWidth}
-					/>
-					<span className={styles.strokeWidthValue}>{strokeWidth} px</span>
-				</InputLabel>
-				<InputLabel>
-					<b>Size</b>
-					<RangeInput
-						min="12"
-						max="48"
-						step="6"
-						value={iconSize}
-						onChange={setIconSize}
-					/>
-					<span className={styles.sizeWidthValue}>
-						{iconSize}×{iconSize} px
-					</span>
-				</InputLabel>
+				<RadioButtonGroup<ThemeContextType['theme']>
+					label="Mode"
+					value={theme}
+					options={['light', 'dark']}
+					className={styles.themeModule}
+					onChange={setTheme}
+				/>
 			</Box>
 		</header>
 	)

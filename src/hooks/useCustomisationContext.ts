@@ -1,6 +1,7 @@
 import { useContext, useEffect, useCallback } from 'react'
 import {
 	context as CustomisationContext,
+	initialState,
 	type CustomisationContext as CustomisationContextType,
 } from '@providers/CustomisationProvider'
 import { useThemeContext } from '@hooks/useThemeContext'
@@ -35,6 +36,15 @@ export const useCustomisationContext = () => {
 		[setState],
 	)
 
+	const reset = () => {
+		setStrokeColor(theme === 'dark' ? '#ffffff' : '#000000')
+		setFillColor(theme === 'dark' ? '#ffffff' : '#000000')
+		setStrokeWidth(initialState.strokeWidth)
+		setCornerType(initialState.cornerType)
+		setIconSize(initialState.iconSize)
+		setStyle(initialState.style)
+	}
+
 	useEffect(() => {
 		setStrokeColor(theme === 'dark' ? '#ffffff' : '#000000')
 		setFillColor(theme === 'dark' ? '#ffffff' : '#000000')
@@ -48,5 +58,6 @@ export const useCustomisationContext = () => {
 		setFillColor,
 		setIconSize,
 		setStyle,
+		reset,
 	}
 }

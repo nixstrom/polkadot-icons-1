@@ -1,6 +1,7 @@
 .radioButtonGroup {
 	display: flex;
-	align-items: center;
+	flex-flow: column nowrap;
+	align-items: flex-start;
 	border: 0;
 	gap: 0.5rem;
 	padding: 0;
@@ -15,4 +16,18 @@
 
 .visibleLegend {
 	font-weight: bold;
+}
+
+.options {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+@media (min-width: 720px) {
+	.radioButtonGroup {
+		flex-flow: row nowrap;
+		align-items: center;
+	}
 }

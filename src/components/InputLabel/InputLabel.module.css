@@ -1,6 +1,15 @@
 .label {
 	white-space: nowrap;
 	display: flex;
-	align-items: center;
+	flex-flow: column nowrap;
+	align-items: flex-start;
 	flex: 1;
+	gap: 10px;
+}
+
+@media (min-width: 720px) {
+	.label {
+		flex-flow: row nowrap;
+		align-items: center;
+	}
 }

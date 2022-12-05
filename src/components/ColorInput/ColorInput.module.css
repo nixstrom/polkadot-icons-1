@@ -6,7 +6,6 @@
 	height: 18px;
 	width: 14ch;
 	position: relative;
-	margin-left: var(--color-swatch-size);
 	border: 0;
 	border-bottom: solid 1px currentColor;
 	cursor: pointer;

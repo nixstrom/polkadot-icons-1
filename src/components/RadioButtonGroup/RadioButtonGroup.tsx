@@ -25,15 +25,17 @@ export const RadioButtonGroup = <Value extends string>({
 		<div aria-hidden="true" className={styles.visibleLegend}>
 			{label}
 		</div>
-		{options.map(option => (
-			<RadioButton
-				key={String(option)}
-				selected={option === value}
-				onClick={() => onChange(option as Value)}
-			>
-				{String(option)}
-			</RadioButton>
-		))}
+		<div className={styles.options}>
+			{options.map(option => (
+				<RadioButton
+					key={String(option)}
+					selected={option === value}
+					onClick={() => onChange(option as Value)}
+				>
+					{String(option)}
+				</RadioButton>
+			))}
+		</div>
 	</fieldset>
 )
 

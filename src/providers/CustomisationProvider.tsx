@@ -9,7 +9,7 @@ export type CustomisationContext = {
 	readonly style: 'keyline' | 'solid' | '2 color'
 }
 
-const initialState: CustomisationContext = {
+export const initialState: CustomisationContext = {
 	strokeColor: '#ffffff',
 	strokeWidth: '2',
 	fillColor: '#ffffff',
