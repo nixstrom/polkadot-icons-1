@@ -25,13 +25,13 @@ export const useIcon = ({ iconName, containerRef, containerHasRef }: Props) => {
 	// used to determine if first-render effects should be ran
 	const [hasRef, setHasRef] = useState(false)
 
-	useEffect(() => {
-		fetch(`/icons/${iconName}.svg`)
-			.then(res => res.text())
-			.then(setSvg)
-			.catch(() => setStatus('error'))
-			.then(() => setStatus('success'))
-	}, [iconName])
+	// useEffect(() => {
+	// 	fetch(`/icons/${iconName}.svg`)
+	// 		.then(res => res.text())
+	// 		.then(setSvg)
+	// 		.catch(() => setStatus('error'))
+	// 		.then(() => setStatus('success'))
+	// }, [iconName])
 
 	const changeStrokeColor = (newColor: string) => {
 		if (iconRef.current) {

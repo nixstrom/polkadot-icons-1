@@ -20,6 +20,7 @@ specifiers:
   jszip: ^3.10.1
   lottie-react: ^2.3.1
   next: 12.3.0
+  polkadot-icon-package: file:../polkadot-icon-package
   prettier: ^2.7.1
   react: 18.2.0
   react-dom: 18.2.0
@@ -34,6 +35,7 @@ dependencies:
   jszip: 3.10.1
   lottie-react: 2.3.1_biqbaboplfbrettd7655fr4n2y
   next: 12.3.0_biqbaboplfbrettd7655fr4n2y
+  polkadot-icon-package: file:../polkadot-icon-package_react@18.2.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
 
@@ -2867,3 +2869,14 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
+
+  file:../polkadot-icon-package_react@18.2.0:
+    resolution: {directory: ../polkadot-icon-package, type: directory}
+    id: file:../polkadot-icon-package
+    name: polkadot-icon-package
+    version: 0.1.0
+    peerDependencies:
+      react: '>=17.0.0'
+    dependencies:
+      react: 18.2.0
+    dev: false

@@ -1,35 +1,10 @@
 import { useContext, useEffect, useRef, type FormEvent } from 'react'
 import { useRouter } from 'next/router'
+import allIcons from 'polkadot-icon-package'
 import { context as SearchContext } from '@providers/SearchProvider'
 
 // Matches file names of icons in /public/icons
-const publicIcons = [
-	'Archive Node',
-	'Blockchain V2',
-	'Boot Node',
-	'Connection via light Node',
-	'Decentralised Storage',
-	'Deposit',
-	'Glossary V1',
-	'Layer',
-	'Layer 1',
-	'Layer 2',
-	'Layer 3',
-	'Layer 4',
-	'Light Node',
-	'Limited supply',
-	'Node',
-	'Not able to upgrade',
-	'Oracle V1',
-	'Proxy',
-	'Referenda V1',
-	'Remote Node',
-	'Teleport',
-	'Tools',
-	'Upgrade',
-	'Whitepaper',
-	'Withdraw',
-]
+const publicIcons = Object.keys(allIcons)
 
 export const useSearch = () => {
 	const [filteredIcons, setFilteredIcons] = useContext(SearchContext)
