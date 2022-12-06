@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef, type FormEvent } from 'react'
 import { useRouter } from 'next/router'
-import allIcons from 'polkadot-icon-package'
+import allIcons from '@nixstrom/polkadot-icons'
 import { context as SearchContext } from '@providers/SearchProvider'
 
 // Matches file names of icons in /public/icons

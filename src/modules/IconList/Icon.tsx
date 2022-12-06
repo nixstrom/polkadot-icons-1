@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import allIcons from 'polkadot-icon-package'
+import allIcons from '@nixstrom/polkadot-icons'
 import { useIcon } from './hooks/useIcon'
 import styles from './IconList.module.css'
 
@@ -12,7 +12,6 @@ export const Icon = ({ iconName }: { readonly iconName: string }) => {
 	// Used to trigger update in useIcon (since refs don't trigger useEffect)
 	const [hasRef, setHasRef] = useState(false)
 	const [status] = useIcon({
-		iconName,
 		containerRef,
 		containerHasRef: hasRef,
 	})
@@ -26,8 +25,6 @@ export const Icon = ({ iconName }: { readonly iconName: string }) => {
 			setHasRef(true)
 		}
 	}
-
-	// if (status === 'error') return null
 
 	return (
 		<div

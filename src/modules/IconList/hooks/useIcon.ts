@@ -9,33 +9,26 @@ import { useCustomisationContext } from '@hooks/useCustomisationContext'
 import type { CustomisationContext as CustomisationContextType } from '@providers/CustomisationProvider'
 
 type Props = {
-	readonly iconName: string
 	readonly containerRef: MutableRefObject<HTMLDivElement | null>
 	readonly containerHasRef: boolean
 }
 
 type Status = 'loading' | 'error' | 'success'
 
-export const useIcon = ({ iconName, containerRef, containerHasRef }: Props) => {
+const svgChildren = 'path, circ, rect'
+
+export const useIcon = ({ containerRef, containerHasRef }: Props) => {
 	const { strokeColor, strokeWidth, fillColor, cornerType, iconSize, style } =
 		useCustomisationContext()
-	const [svg, setSvg] = useState<string>('')
-	const [status, setStatus] = useState<Status>('loading')
+	const [svg] = useState<string>('')
+	const [status] = useState<Status>('loading')
 	const iconRef = useRef<SVGElement | null>(null)
 	// used to determine if first-render effects should be ran
 	const [hasRef, setHasRef] = useState(false)
 
-	// useEffect(() => {
-	// 	fetch(`/icons/${iconName}.svg`)
-	// 		.then(res => res.text())
-	// 		.then(setSvg)
-	// 		.catch(() => setStatus('error'))
-	// 		.then(() => setStatus('success'))
-	// }, [iconName])
-
 	const changeStrokeColor = (newColor: string) => {
 		if (iconRef.current) {
-			const paths = iconRef.current?.querySelectorAll('path') || []
+			const paths = iconRef.current?.querySelectorAll(svgChildren) || []
 
 			paths.forEach(p => {
 				p.setAttribute('stroke', newColor)
@@ -45,7 +38,7 @@ export const useIcon = ({ iconName, containerRef, containerHasRef }: Props) => {
 
 	const changeFillColor = (newColor: string) => {
 		if (iconRef.current) {
-			const paths = iconRef.current?.querySelectorAll('path') || []
+			const paths = iconRef.current?.querySelectorAll(svgChildren) || []
 
 			paths.forEach(p => {
 				p.setAttribute('fill', newColor)
@@ -55,7 +48,7 @@ export const useIcon = ({ iconName, containerRef, containerHasRef }: Props) => {
 
 	const changeStrokeWidth = (newStrokeWidth: string) => {
 		if (iconRef.current) {
-			const paths = iconRef.current?.querySelectorAll('path') || []
+			const paths = iconRef.current?.querySelectorAll(svgChildren) || []
 
 			paths.forEach(p => {
 				p.setAttribute('stroke-width', newStrokeWidth)
@@ -65,7 +58,7 @@ export const useIcon = ({ iconName, containerRef, containerHasRef }: Props) => {
 
 	const changeCornerType = (newCornerType: string) => {
 		if (iconRef.current) {
-			const paths = iconRef.current?.querySelectorAll('path') || []
+			const paths = iconRef.current?.querySelectorAll(svgChildren) || []
 			const [linecap, linejoin] =
 				newCornerType === 'round'
 					? ['round', 'round']
@@ -90,7 +83,7 @@ export const useIcon = ({ iconName, containerRef, containerHasRef }: Props) => {
 	const changeStyle = useCallback(
 		(newStyle: CustomisationContextType['style']) => {
 			if (iconRef.current) {
-				const paths = iconRef.current?.querySelectorAll('path') || []
+				const paths = iconRef.current?.querySelectorAll(svgChildren) || []
 
 				if (newStyle === 'solid') {
 					paths.forEach(p => {
