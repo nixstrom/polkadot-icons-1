@@ -13,8 +13,6 @@
 /* === LOGO ================================================================  */
 
 .logo {
-	background-image: url('/logo.svg');
-	background-repeat: no-repeat;
 	height: 29px;
 	width: 28px;
 	z-index: 100;

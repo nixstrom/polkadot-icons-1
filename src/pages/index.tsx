@@ -30,13 +30,6 @@ export default function Home() {
 				/>
 				<link
 					rel="preload"
-					href="/Unbounded-Light.woff2"
-					as="font"
-					type="font/woff2"
-					crossOrigin="anonymous"
-				/>
-				<link
-					rel="preload"
 					href="/Unbounded-Regular.woff2"
 					as="font"
 					type="font/woff2"
