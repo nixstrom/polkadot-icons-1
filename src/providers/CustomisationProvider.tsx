@@ -6,7 +6,7 @@ export type CustomisationContext = {
 	readonly fillColor: string
 	readonly iconSize: string
 	readonly cornerType: 'round' | 'square' | 'bevel'
-	readonly style: 'keyline' | 'solid' | '2 color'
+	readonly style: 'line' | 'solid' | '2 color'
 }
 
 export const initialState: CustomisationContext = {
@@ -15,7 +15,7 @@ export const initialState: CustomisationContext = {
 	fillColor: '#ffffff',
 	iconSize: '24',
 	cornerType: 'round',
-	style: 'keyline',
+	style: 'line',
 }
 
 type Noop = () => void

@@ -44,7 +44,7 @@ export const Header = () => {
 				<RadioButtonGroup<CustomisationContextType['style']>
 					label="Style"
 					value={style}
-					options={['keyline', 'solid', '2 color']}
+					options={['line', 'solid', '2 color']}
 					className={styles.styleModule}
 					onChange={setStyle}
 				/>
@@ -56,7 +56,7 @@ export const Header = () => {
 					</InputLabel>
 				)}
 
-				{style !== 'keyline' && (
+				{style !== 'line' && (
 					<InputLabel className={styles.fillColorModule}>
 						<b>Fill color</b>
 						<ColorInput value={fillColor} onChange={setFillColor} />

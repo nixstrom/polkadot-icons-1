@@ -106,7 +106,7 @@ export const useIcon = ({ containerRef, containerHasRef }: Props) => {
 						p.setAttribute('fill', fillColor)
 						p.setAttribute('stroke', 'none')
 					})
-				} else if (newStyle === 'keyline') {
+				} else if (newStyle === 'line') {
 					paths.forEach(p => {
 						p.setAttribute('fill', 'none')
 						p.setAttribute('stroke', strokeColor)
