@@ -28,7 +28,7 @@ export const Search = () => {
 						>
 							<Close
 								aria-hidden
-								height="19"
+								height="22"
 								width="10"
 								className={styles.clearIcon}
 							/>
