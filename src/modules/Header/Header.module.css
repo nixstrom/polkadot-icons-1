@@ -67,6 +67,15 @@
 	text-align: right;
 }
 
+.themeModule button {
+	width: 40px;
+}
+
+.themeModule button svg {
+	position: relative;
+	top: 1px;
+}
+
 /* prevent layout shift when toggling style */
 .strokeColorModule > b,
 .fillColorModule > b {

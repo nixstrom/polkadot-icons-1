@@ -109,8 +109,8 @@ export const Header = () => {
 					value={theme}
 					options={['light', 'dark']}
 					renderOptions={[
-						<Sun key="sun" aria-label="Light mode" />,
-						<Moon key="moon" aria-label="Dark mode" />,
+						<Sun key="sun" aria-label="Light mode" height="14" />,
+						<Moon key="moon" aria-label="Dark mode" height="14" />,
 					]}
 					className={styles.themeModule}
 					onChange={setTheme}
