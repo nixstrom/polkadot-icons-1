@@ -67,10 +67,11 @@
 	text-align: right;
 }
 
-/* Show this only in certain layouts (to make a space in grid) */
-/* .dummyContainer {
-	display: none;
-} */
+/* prevent layout shift when toggling style */
+.strokeColorModule > b,
+.fillColorModule > b {
+	width: 8ch;
+}
 
 @media (min-width: 480px) {
 	.rangeInputWrapper input {
