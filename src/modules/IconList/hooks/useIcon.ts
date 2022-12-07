@@ -73,7 +73,7 @@ export const useIcon = ({ containerRef, containerHasRef }: Props) => {
 					newCornerType === 'round'
 						? ['round', 'round']
 						: newCornerType === 'bevel'
-						? ['butt', 'bevel']
+						? ['square', 'bevel']
 						: ['square', 'miter']
 
 				paths.forEach(p => {
