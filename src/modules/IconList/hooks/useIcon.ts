@@ -87,9 +87,10 @@ export const useIcon = ({ containerRef, containerHasRef }: Props) => {
 
 	const changeSize = useCallback(
 		(newSize: string) => {
-			if (containerRef.current) {
-				containerRef.current.setAttribute('height', newSize)
-				containerRef.current.setAttribute('width', newSize)
+			const svgEl = containerRef.current?.querySelector('svg')
+			if (svgEl) {
+				svgEl.setAttribute('height', newSize)
+				svgEl.setAttribute('width', newSize)
 			}
 		},
 		[containerRef],
