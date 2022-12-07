@@ -10,6 +10,7 @@
 	overflow: hidden;
 	display: grid;
 	grid-template-columns: 1fr;
+	pointer-events: none;
 }
 
 .middleCol {
@@ -19,6 +20,7 @@
 	right: 0;
 	z-index: 2;
 	text-align: center;
+	pointer-events: all;
 }
 
 .endCol {
@@ -27,6 +29,7 @@
 	left: 0;
 	right: 0;
 	text-align: center;
+	pointer-events: all;
 }
 
 .clear,
