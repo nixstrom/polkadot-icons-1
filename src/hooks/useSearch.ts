@@ -3,13 +3,14 @@ import { useRouter } from 'next/router'
 import allIcons from '@nixstrom/polkadot-icons'
 import { context as SearchContext } from '@providers/SearchProvider'
 
-// Matches file names of icons in /public/icons
 const publicIcons = Object.keys(allIcons)
 
 export const useSearch = () => {
 	const [filteredIcons, setFilteredIcons] = useContext(SearchContext)
 	const inputRef = useRef<HTMLInputElement | null>(null)
 	const router = useRouter()
+
+	// console.log({ publicIcons })
 
 	const onSearch = (event: FormEvent) => {
 		event.preventDefault()

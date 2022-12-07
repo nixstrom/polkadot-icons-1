@@ -1,13 +1,34 @@
 import React, { useState, useRef } from 'react'
-import allIcons from '@nixstrom/polkadot-icons'
+import icons from '@nixstrom/polkadot-icons/lib/keyline'
+import solidIcons from '@nixstrom/polkadot-icons/lib/solid'
 import { useIcon } from './hooks/useIcon'
+import { useCustomisationContext } from '@hooks/useCustomisationContext'
+import type { CustomisationContext as CustomisationContextType } from '@providers/CustomisationProvider'
 import styles from './IconList.module.css'
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore-next-line
-const ExternalIcon = ({ name }: { readonly name: string }) => allIcons[name]({})
+const ExternalIcon = ({
+	name,
+	style,
+}: {
+	readonly name: string
+	readonly style: CustomisationContextType['style']
+}) => {
+	const composedKey = name as keyof typeof icons
+	const solidKey = name as keyof typeof solidIcons
+
+	if (style === 'solid' && solidIcons[solidKey]) {
+		return solidIcons[solidKey]({})
+	}
+
+	if (icons[composedKey]) {
+		return icons[composedKey]({})
+	}
+
+	return null
+}
 
 export const Icon = ({ iconName }: { readonly iconName: string }) => {
+	const { style } = useCustomisationContext()
 	const containerRef = useRef<HTMLDivElement | null>(null)
 	// Used to trigger update in useIcon (since refs don't trigger useEffect)
 	const [hasRef, setHasRef] = useState(false)
@@ -15,8 +36,6 @@ export const Icon = ({ iconName }: { readonly iconName: string }) => {
 		containerRef,
 		containerHasRef: hasRef,
 	})
-
-	//const ExternalIcon = allIcons[`"${iconName}"`] as ReactNode
 
 	const handleSetRef = (el: HTMLDivElement) => {
 		if (el) {
@@ -34,7 +53,7 @@ export const Icon = ({ iconName }: { readonly iconName: string }) => {
 			}`}
 			data-download-name={iconName}
 		>
-			<ExternalIcon name={iconName} />
+			<ExternalIcon name={iconName} style={style} />
 		</div>
 	)
 }

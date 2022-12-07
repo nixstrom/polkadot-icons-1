@@ -15,7 +15,7 @@ type Props = {
 
 type Status = 'loading' | 'error' | 'success'
 
-const svgChildren = 'path, circ, rect'
+const svgChildren = 'path, circle, rect'
 
 export const useIcon = ({ containerRef, containerHasRef }: Props) => {
 	const { strokeColor, strokeWidth, fillColor, cornerType, iconSize, style } =
@@ -26,69 +26,84 @@ export const useIcon = ({ containerRef, containerHasRef }: Props) => {
 	// used to determine if first-render effects should be ran
 	const [hasRef, setHasRef] = useState(false)
 
-	const changeStrokeColor = (newColor: string) => {
-		if (iconRef.current) {
-			const paths = iconRef.current?.querySelectorAll(svgChildren) || []
+	const changeStrokeColor = useCallback(
+		(newColor: string) => {
+			if (containerRef.current) {
+				const paths = containerRef.current?.querySelectorAll(svgChildren) || []
 
-			paths.forEach(p => {
-				p.setAttribute('stroke', newColor)
-			})
-		}
-	}
+				paths.forEach(p => {
+					p.setAttribute('stroke', newColor)
+				})
+			}
+		},
+		[containerRef],
+	)
 
-	const changeFillColor = (newColor: string) => {
-		if (iconRef.current) {
-			const paths = iconRef.current?.querySelectorAll(svgChildren) || []
+	const changeFillColor = useCallback(
+		(newColor: string) => {
+			if (containerRef.current) {
+				const paths = containerRef.current?.querySelectorAll(svgChildren) || []
 
-			paths.forEach(p => {
-				p.setAttribute('fill', newColor)
-			})
-		}
-	}
+				paths.forEach(p => {
+					p.setAttribute('fill', newColor)
+				})
+			}
+		},
+		[containerRef],
+	)
 
-	const changeStrokeWidth = (newStrokeWidth: string) => {
-		if (iconRef.current) {
-			const paths = iconRef.current?.querySelectorAll(svgChildren) || []
+	const changeStrokeWidth = useCallback(
+		(newStrokeWidth: string) => {
+			if (containerRef.current) {
+				const paths = containerRef.current?.querySelectorAll(svgChildren) || []
 
-			paths.forEach(p => {
-				p.setAttribute('stroke-width', newStrokeWidth)
-			})
-		}
-	}
+				paths.forEach(p => {
+					p.setAttribute('stroke-width', newStrokeWidth)
+				})
+			}
+		},
+		[containerRef],
+	)
 
-	const changeCornerType = (newCornerType: string) => {
-		if (iconRef.current) {
-			const paths = iconRef.current?.querySelectorAll(svgChildren) || []
-			const [linecap, linejoin] =
-				newCornerType === 'round'
-					? ['round', 'round']
-					: newCornerType === 'bevel'
-					? ['butt', 'bevel']
-					: ['square', 'miter']
+	const changeCornerType = useCallback(
+		(newCornerType: string) => {
+			if (containerRef.current) {
+				const paths = containerRef.current?.querySelectorAll(svgChildren) || []
+				const [linecap, linejoin] =
+					newCornerType === 'round'
+						? ['round', 'round']
+						: newCornerType === 'bevel'
+						? ['butt', 'bevel']
+						: ['square', 'miter']
 
-			paths.forEach(p => {
-				p.setAttribute('stroke-linecap', linecap)
-				p.setAttribute('stroke-linejoin', linejoin)
-			})
-		}
-	}
+				paths.forEach(p => {
+					p.setAttribute('stroke-linecap', linecap)
+					p.setAttribute('stroke-linejoin', linejoin)
+				})
+			}
+		},
+		[containerRef],
+	)
 
-	const changeSize = (newSize: string) => {
-		if (iconRef.current) {
-			iconRef.current.setAttribute('height', newSize)
-			iconRef.current.setAttribute('width', newSize)
-		}
-	}
+	const changeSize = useCallback(
+		(newSize: string) => {
+			if (containerRef.current) {
+				containerRef.current.setAttribute('height', newSize)
+				containerRef.current.setAttribute('width', newSize)
+			}
+		},
+		[containerRef],
+	)
 
 	const changeStyle = useCallback(
 		(newStyle: CustomisationContextType['style']) => {
-			if (iconRef.current) {
-				const paths = iconRef.current?.querySelectorAll(svgChildren) || []
+			if (containerRef.current) {
+				const paths = containerRef.current?.querySelectorAll(svgChildren) || []
 
 				if (newStyle === 'solid') {
 					paths.forEach(p => {
 						p.setAttribute('fill', fillColor)
-						p.setAttribute('stroke', fillColor)
+						p.setAttribute('stroke', 'none')
 					})
 				} else if (newStyle === 'keyline') {
 					paths.forEach(p => {
@@ -103,24 +118,27 @@ export const useIcon = ({ containerRef, containerHasRef }: Props) => {
 				}
 			}
 		},
-		[fillColor, strokeColor],
+		[fillColor, strokeColor, containerRef],
 	)
 
 	useEffect(() => {
 		changeStrokeColor(strokeColor)
-	}, [containerHasRef, strokeColor, hasRef, status])
+	}, [containerHasRef, changeStrokeColor, strokeColor, hasRef, status])
 	useEffect(
 		() => changeStrokeWidth(strokeWidth),
-		[containerHasRef, strokeWidth, hasRef],
+		[containerHasRef, changeStrokeWidth, strokeWidth, hasRef],
 	)
 	useEffect(() => {
 		changeFillColor(fillColor)
-	}, [containerHasRef, fillColor, hasRef, status])
+	}, [containerHasRef, changeFillColor, fillColor, hasRef, status])
 	useEffect(
 		() => changeCornerType(cornerType),
-		[containerHasRef, cornerType, hasRef],
+		[containerHasRef, changeCornerType, cornerType, hasRef],
 	)
-	useEffect(() => changeSize(iconSize), [containerHasRef, iconSize, hasRef])
+	useEffect(
+		() => changeSize(iconSize),
+		[containerHasRef, changeSize, iconSize, hasRef],
+	)
 
 	useEffect(
 		() => changeStyle(style),
