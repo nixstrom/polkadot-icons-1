@@ -18,9 +18,11 @@ export const useSearch = () => {
 		if (inputRef.current?.value) {
 			router.push(
 				`/?search=${encodeURIComponent(inputRef.current.value.trim())}`,
+				undefined,
+				{ scroll: false },
 			)
 		} else {
-			router.push('/')
+			router.push('/', undefined, { scroll: false })
 		}
 	}
 
