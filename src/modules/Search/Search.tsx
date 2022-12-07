@@ -6,7 +6,7 @@ import styles from './Search.module.css'
 import { Close } from '@icons/Close'
 
 export const Search = () => {
-	const { inputRef, initialValue, onSearch, onClear } = useSearch()
+	const { inputRef, initialValue, totalCount, onSearch, onClear } = useSearch()
 
 	return (
 		<div className={styles.Search}>
@@ -15,7 +15,7 @@ export const Search = () => {
 					<SearchIcon className={styles.searchIcon} />
 					<input
 						ref={inputRef}
-						placeholder="Search"
+						placeholder={`Search ${totalCount} icons`}
 						type="search"
 						className={styles.input}
 						defaultValue={initialValue}

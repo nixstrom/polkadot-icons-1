@@ -15,6 +15,7 @@
 	border: 0 none;
 	border-radius: var(--border-radius);
 	height: var(--input-height);
+	font-family: var(--font-family);
 	font-size: 1rem;
 	width: 100%;
 	padding-inline: 3rem 15rem;

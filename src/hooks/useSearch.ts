@@ -51,5 +51,6 @@ export const useSearch = () => {
 		onSearch,
 		onClear,
 		icons: filteredIcons.icons,
+		totalCount: publicIcons.length,
 	}
 }
