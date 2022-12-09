@@ -10,8 +10,6 @@ export const useSearch = () => {
 	const inputRef = useRef<HTMLInputElement | null>(null)
 	const router = useRouter()
 
-	// console.log({ publicIcons })
-
 	const onSearch = (event: FormEvent) => {
 		event.preventDefault()
 
@@ -27,6 +25,7 @@ export const useSearch = () => {
 	}
 
 	const onClear = () => {
+		console.log('on clear')
 		if (inputRef.current?.value) {
 			// eslint-disable-next-line functional/immutable-data
 			inputRef.current.value = ''

@@ -1,3 +1,4 @@
+import type { KeyboardEvent } from 'react'
 import { Box } from '@components/Box/Box'
 import { Button } from '@components/Button/Button'
 import { Search as SearchIcon } from '@icons/Search'
@@ -8,6 +9,14 @@ import { Close } from '@icons/Close'
 export const Search = () => {
 	const { inputRef, initialValue, totalCount, onSearch, onClear } = useSearch()
 
+	const handleOnKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+		// prevent clear button being pressed when pressing enter
+		if (event.key === 'Enter') {
+			event.preventDefault()
+			onSearch(event)
+		}
+	}
+
 	return (
 		<div className={styles.Search}>
 			<Box>
@@ -17,6 +26,7 @@ export const Search = () => {
 						ref={inputRef}
 						placeholder={`Search ${totalCount} icons`}
 						type="search"
+						onKeyDown={handleOnKeyDown}
 						className={styles.input}
 						defaultValue={initialValue}
 					/>
