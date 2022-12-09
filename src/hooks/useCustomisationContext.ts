@@ -9,6 +9,7 @@ import { useThemeContext } from '@hooks/useThemeContext'
 export const useCustomisationContext = () => {
 	const { theme } = useThemeContext()
 	const [state, setState] = useContext(CustomisationContext)
+	const { isInitialised } = state
 
 	const setStrokeColor = useCallback(
 		(newColor: CustomisationContextType['strokeColor']) => {
@@ -46,9 +47,14 @@ export const useCustomisationContext = () => {
 	}
 
 	useEffect(() => {
-		setStrokeColor(theme === 'dark' ? '#ffffff' : '#000000')
-		setFillColor(theme === 'dark' ? '#ffffff' : '#000000')
-	}, [setStrokeColor, setFillColor, theme])
+		// prevent colour reset every time an icon mounts
+		if (!isInitialised) {
+			setStrokeColor(theme === 'dark' ? '#ffffff' : '#000000')
+			setFillColor(theme === 'dark' ? '#ffffff' : '#000000')
+
+			setState(prevState => ({ ...prevState, isInitialised: true }))
+		}
+	}, [setStrokeColor, setFillColor, setState, theme, isInitialised])
 
 	return {
 		...state,

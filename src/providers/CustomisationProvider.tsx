@@ -7,6 +7,7 @@ export type CustomisationContext = {
 	readonly iconSize: string
 	readonly cornerType: 'round' | 'square' | 'bevel'
 	readonly style: 'line' | 'solid' | '2 color'
+	readonly isInitialised: boolean
 }
 
 export const initialState: CustomisationContext = {
@@ -16,6 +17,7 @@ export const initialState: CustomisationContext = {
 	iconSize: '24',
 	cornerType: 'round',
 	style: 'line',
+	isInitialised: false,
 }
 
 type Noop = () => void
