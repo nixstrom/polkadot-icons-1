@@ -7,10 +7,10 @@ import styles from './IconList.module.css'
 
 type Props = {
 	readonly iconName: string
-	readonly style: CustomisationContextType['style']
+	readonly ctx: CustomisationContextType
 }
 
-export const IconListItem = ({ iconName, style }: Props) => {
+export const IconListItem = ({ iconName, ctx }: Props) => {
 	const { handleOnCheckToggle, handleOnUncheck, selectedIcons } = useSelection()
 
 	const handleOnKeydown = (
@@ -52,7 +52,7 @@ export const IconListItem = ({ iconName, style }: Props) => {
 				tabIndex={0}
 			/>
 			<div className={styles.fauxCheckbox} />
-			<Icon iconName={iconName} style={style} />
+			<Icon {...{ ctx, iconName }} />
 			<small>{getIconTitle(iconName)}</small>
 		</li>
 	)

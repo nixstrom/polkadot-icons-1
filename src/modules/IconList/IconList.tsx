@@ -7,12 +7,13 @@ import styles from './IconList.module.css'
 
 export const IconList = () => {
 	const { icons } = useSearch()
-	const { style } = useCustomisationContext()
+	// prop drilling to avoid it being called on every icon mount
+	const ctx = useCustomisationContext()
 
 	return (
 		<Box as="ul" className={styles.list}>
 			{icons.map(icon => (
-				<IconListItem key={icon} iconName={icon} style={style} />
+				<IconListItem key={icon} iconName={icon} ctx={ctx} />
 			))}
 		</Box>
 	)

@@ -5,15 +5,20 @@ import { useIcon } from './hooks/useIcon'
 import type { CustomisationContext as CustomisationContextType } from '@providers/CustomisationProvider'
 import styles from './IconList.module.css'
 
+type Props = {
+	readonly iconName: string
+	readonly ctx: CustomisationContextType
+}
+
 const ExternalIcon = ({
-	name,
+	iconName,
 	style,
 }: {
-	readonly name: string
+	readonly iconName: string
 	readonly style: CustomisationContextType['style']
 }) => {
-	const composedKey = name as keyof typeof icons
-	const solidKey = name as keyof typeof solidIcons
+	const composedKey = iconName as keyof typeof icons
+	const solidKey = iconName as keyof typeof solidIcons
 
 	if (style === 'solid' && solidIcons[solidKey]) {
 		return solidIcons[solidKey]({})
@@ -26,19 +31,14 @@ const ExternalIcon = ({
 	return null
 }
 
-export const Icon = ({
-	iconName,
-	style,
-}: {
-	readonly iconName: string
-	readonly style: CustomisationContextType['style']
-}) => {
+export const Icon = ({ iconName, ctx }: Props) => {
 	const containerRef = useRef<HTMLDivElement | null>(null)
 	// Used to trigger update in useIcon (since refs don't trigger useEffect)
 	const [hasRef, setHasRef] = useState(false)
 	const [status] = useIcon({
 		containerRef,
 		containerHasRef: hasRef,
+		ctx,
 	})
 
 	const handleSetRef = (el: HTMLDivElement) => {
@@ -57,7 +57,7 @@ export const Icon = ({
 			}`}
 			data-download-name={iconName}
 		>
-			<ExternalIcon name={iconName} style={style} />
+			<ExternalIcon iconName={iconName} style={ctx.style} />
 		</div>
 	)
 }

@@ -5,21 +5,21 @@ import {
 	useRef,
 	type MutableRefObject,
 } from 'react'
-import { useCustomisationContext } from '@hooks/useCustomisationContext'
 import type { CustomisationContext as CustomisationContextType } from '@providers/CustomisationProvider'
 
 type Props = {
 	readonly containerRef: MutableRefObject<HTMLDivElement | null>
 	readonly containerHasRef: boolean
+	readonly ctx: CustomisationContextType
 }
 
 type Status = 'loading' | 'error' | 'success'
 
 const svgChildren = 'path, circle, rect'
 
-export const useIcon = ({ containerRef, containerHasRef }: Props) => {
+export const useIcon = ({ containerRef, containerHasRef, ctx }: Props) => {
 	const { strokeColor, strokeWidth, fillColor, cornerType, iconSize, style } =
-		useCustomisationContext()
+		ctx
 	const [svg] = useState<string>('')
 	const [status] = useState<Status>('loading')
 	const iconRef = useRef<SVGElement | null>(null)
