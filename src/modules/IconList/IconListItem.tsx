@@ -1,13 +1,15 @@
 import React, { useEffect, useCallback, type KeyboardEvent } from 'react'
 import { Icon } from './Icon'
 import { useSelection } from '@hooks/useSelection'
+import type { CustomisationContext as CustomisationContextType } from '@providers/CustomisationProvider'
 import styles from './IconList.module.css'
 
 type Props = {
 	readonly iconName: string
+	readonly style: CustomisationContextType['style']
 }
 
-export const IconListItem = ({ iconName }: Props) => {
+export const IconListItem = ({ iconName, style }: Props) => {
 	const { handleOnCheckToggle, handleOnUncheck, selectedIcons } = useSelection()
 
 	const handleOnKeydown = (
@@ -49,7 +51,7 @@ export const IconListItem = ({ iconName }: Props) => {
 				tabIndex={0}
 			/>
 			<div className={styles.fauxCheckbox} />
-			<Icon iconName={iconName} />
+			<Icon iconName={iconName} style={style} />
 			<small>{iconName}</small>
 		</li>
 	)

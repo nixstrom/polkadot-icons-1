@@ -2,7 +2,6 @@ import React, { useState, useRef } from 'react'
 import icons from '@nixstrom/polkadot-icons/lib/keyline'
 import solidIcons from '@nixstrom/polkadot-icons/lib/solid'
 import { useIcon } from './hooks/useIcon'
-import { useCustomisationContext } from '@hooks/useCustomisationContext'
 import type { CustomisationContext as CustomisationContextType } from '@providers/CustomisationProvider'
 import styles from './IconList.module.css'
 
@@ -27,8 +26,13 @@ const ExternalIcon = ({
 	return null
 }
 
-export const Icon = ({ iconName }: { readonly iconName: string }) => {
-	const { style } = useCustomisationContext()
+export const Icon = ({
+	iconName,
+	style,
+}: {
+	readonly iconName: string
+	readonly style: CustomisationContextType['style']
+}) => {
 	const containerRef = useRef<HTMLDivElement | null>(null)
 	// Used to trigger update in useIcon (since refs don't trigger useEffect)
 	const [hasRef, setHasRef] = useState(false)
