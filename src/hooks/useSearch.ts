@@ -1,6 +1,7 @@
 import { useContext, useEffect, useRef, type FormEvent } from 'react'
 import { useRouter } from 'next/router'
 import allIcons from '@nixstrom/polkadot-icons'
+import { getIconTitle } from '@translations/iconNames'
 import { context as SearchContext } from '@providers/SearchProvider'
 
 const publicIcons = Object.keys(allIcons)
@@ -25,7 +26,6 @@ export const useSearch = () => {
 	}
 
 	const onClear = () => {
-		console.log('on clear')
 		if (inputRef.current?.value) {
 			// eslint-disable-next-line functional/immutable-data
 			inputRef.current.value = ''
@@ -35,7 +35,14 @@ export const useSearch = () => {
 	useEffect(() => {
 		if (typeof router.query.search === 'string') {
 			const icons = publicIcons.filter(icon =>
-				icon.toLowerCase().includes(String(router.query.search).toLowerCase()),
+				getIconTitle(icon)
+					.toLowerCase()
+					.replaceAll('[^A-Za-z0-9]', '')
+					.includes(
+						String(router.query.search)
+							.toLowerCase()
+							.replaceAll('[^A-Za-z0-9]', ''),
+					),
 			)
 
 			setFilteredIcons({ icons })
