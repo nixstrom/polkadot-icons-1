@@ -99,6 +99,7 @@ export const Header = () => {
 					<b>Corner</b>
 					<Select
 						value={cornerType}
+						disabled={style === 'solid'}
 						options={['round', 'square', 'bevel']}
 						onChange={setCornerType}
 					/>

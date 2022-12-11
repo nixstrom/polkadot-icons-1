@@ -1,4 +1,4 @@
-import { useState, type KeyboardEvent, type MouseEvent } from 'react'
+import { useState, useEffect, type KeyboardEvent, type MouseEvent } from 'react'
 import type { CustomisationContext } from '@providers/CustomisationProvider'
 import { ChevronDown } from '@icons/ChevronDown'
 import styles from './Select.module.css'
@@ -6,21 +6,36 @@ import styles from './Select.module.css'
 type Props = {
 	readonly value: string
 	readonly className?: string
+	readonly disabled?: boolean
 	readonly options: ReadonlyArray<string>
 	readonly onChange: (val: CustomisationContext['cornerType']) => void
 }
 
 type Status = 'idle' | 'focus' | 'active'
 
-export const Select = ({ value, options, className, onChange }: Props) => {
+export const Select = ({
+	value,
+	options,
+	className,
+	disabled,
+	onChange,
+}: Props) => {
 	const [status, setStatus] = useState<Status>('idle')
-	const [selectedIndex, setSelectedIndex] = useState(0)
+	const [selectedIndex, setSelectedIndex] = useState(() =>
+		options.findIndex(opt => opt === value),
+	)
 
 	const handleOnFocus = () => setStatus('focus')
 	const handleOnBlur = () => setStatus('idle')
-	const handleOnClick = () => setStatus('active')
+	const handleOnClick = () => {
+		if (!disabled) {
+			setStatus('active')
+		}
+	}
 
 	const handleOnKeyDownWrapper = (event: KeyboardEvent) => {
+		if (disabled) return
+
 		if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
 			// prevent page scroll when using arrows
 			event.preventDefault()
@@ -54,16 +69,23 @@ export const Select = ({ value, options, className, onChange }: Props) => {
 		setStatus('idle')
 	}
 
+	useEffect(
+		() => setSelectedIndex(options.findIndex(opt => opt === value)),
+		[options, value],
+	)
+
 	return (
 		// eslint-disable-next-line jsx-a11y/no-static-element-interactions
 		<span
-			className={`${className} ${styles.inputWrapper}`}
+			className={`${className} ${styles.inputWrapper} ${
+				disabled ? styles.disabled : ''
+			}`}
 			onFocus={handleOnFocus}
 			onBlur={handleOnBlur}
 			onClick={handleOnClick}
 			onKeyDown={handleOnKeyDownWrapper}
 			// eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
-			tabIndex={0}
+			tabIndex={disabled ? -1 : 0}
 		>
 			<div
 				className={`${styles.options}  ${

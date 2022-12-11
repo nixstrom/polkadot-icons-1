@@ -29,7 +29,11 @@ export const useCustomisationContext = () => {
 		setState(prevState => ({ ...prevState, iconSize: newSize }))
 
 	const setStyle = (newStyle: CustomisationContextType['style']) =>
-		setState(prevState => ({ ...prevState, style: newStyle }))
+		setState(prevState => ({
+			...prevState,
+			cornerType: newStyle === 'solid' ? 'round' : prevState.cornerType,
+			style: newStyle,
+		}))
 
 	const setFillColor = useCallback(
 		(newColor: CustomisationContextType['fillColor']) =>
