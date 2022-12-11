@@ -1,6 +1,7 @@
 import React, { useEffect, useCallback, type KeyboardEvent } from 'react'
 import { Icon } from './Icon'
 import { useSelection } from '@hooks/useSelection'
+import { getIconTitle } from '@translations/iconNames'
 import type { CustomisationContext as CustomisationContextType } from '@providers/CustomisationProvider'
 import styles from './IconList.module.css'
 
@@ -52,7 +53,7 @@ export const IconListItem = ({ iconName, style }: Props) => {
 			/>
 			<div className={styles.fauxCheckbox} />
 			<Icon iconName={iconName} style={style} />
-			<small>{iconName}</small>
+			<small>{getIconTitle(iconName)}</small>
 		</li>
 	)
 }

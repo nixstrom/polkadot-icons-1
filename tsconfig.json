@@ -22,7 +22,8 @@
 			"@icons/*": ["icons/*"],
 			"@hooks/*": ["hooks/*"],
 			"@providers/*": ["providers/*"],
-			"@lotties/*": ["lotties/*"]
+			"@lotties/*": ["lotties/*"],
+			"@translations/*": ["translations/*"]
 		}
 	},
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
