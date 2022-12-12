@@ -45,7 +45,9 @@ export const useIcon = ({ containerRef, containerHasRef, ctx }: Props) => {
 				const paths = containerRef.current?.querySelectorAll(svgChildren) || []
 
 				paths.forEach(p => {
-					p.setAttribute('fill', newColor)
+					p.hasAttribute('fill') &&
+						p.getAttribute('fill') !== 'none' &&
+						p.setAttribute('fill', newColor)
 				})
 			}
 		},
@@ -103,8 +105,12 @@ export const useIcon = ({ containerRef, containerHasRef, ctx }: Props) => {
 
 				if (newStyle === 'solid') {
 					paths.forEach(p => {
-						p.setAttribute('fill', fillColor)
-						p.setAttribute('stroke', 'none')
+						p.hasAttribute('fill') &&
+							p.getAttribute('fill') !== 'none' &&
+							p.setAttribute('fill', fillColor)
+						p.hasAttribute('stroke') &&
+							p.getAttribute('stroke') !== 'none' &&
+							p.setAttribute('stroke', fillColor)
 					})
 				} else if (newStyle === 'line') {
 					paths.forEach(p => {
