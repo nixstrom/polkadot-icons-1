@@ -35,6 +35,11 @@ export const useCustomisationContext = () => {
 			...prevState,
 			cornerType: newStyle === 'solid' ? 'round' : prevState.cornerType,
 			style: newStyle,
+			fillColor:
+				// default to two colours in 2-color mode (use brand colour)
+				newStyle === '2 color' && prevState.fillColor === prevState.strokeColor
+					? '#e6007a'
+					: prevState.fillColor,
 		}))
 
 	const setFillColor = useCallback(
