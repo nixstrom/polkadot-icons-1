@@ -113,7 +113,8 @@ export const useIcon = ({ containerRef, containerHasRef, ctx }: Props) => {
 					})
 				} else {
 					paths.forEach(p => {
-						p.setAttribute('fill', fillColor)
+						p.getAttribute('data-nofill') !== 'true' &&
+							p.setAttribute('fill', fillColor)
 						p.setAttribute('stroke', strokeColor)
 					})
 				}
