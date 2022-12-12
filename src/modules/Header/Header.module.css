@@ -56,11 +56,15 @@
 
 .strokeWidthValue {
 	margin-inline-start: 10px;
+	/* Prevent layout shift when value changes */
+	display: inline-block;
 	width: 4ch;
 }
 
 .sizeWidthValue {
 	margin-inline-start: 10px;
+	/* Prevent layout shift when value changes */
+	display: inline-block;
 	width: 8ch;
 }
 
