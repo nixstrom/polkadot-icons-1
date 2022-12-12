@@ -102,3 +102,10 @@
 	opacity: 0;
 	transform: scale(1.5);
 }
+
+.canvas {
+	border: 0 none;
+	opacity: 0;
+	visibility: hidden;
+	position: absolute;
+}

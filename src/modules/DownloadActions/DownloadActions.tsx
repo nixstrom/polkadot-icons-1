@@ -4,6 +4,7 @@ import FileSaver from 'file-saver'
 import { Button } from '@components/Button/Button'
 import { useSearch } from '@hooks/useSearch'
 import { useSelection } from '@hooks/useSelection'
+import { useDownloadContext } from '@hooks/useDownloadContext'
 import styles from './DownloadActions.module.css'
 
 const composeDownloadButtonText = (
@@ -20,12 +21,62 @@ const composeDownloadButtonText = (
 	return 'Download all'
 }
 
+const downloadZip = (zip: JSZip) => {
+	setTimeout(() => {
+		zip.generateAsync({ type: 'blob' }).then(function (content) {
+			FileSaver.saveAs(content, 'polkadot-icons.zip')
+		})
+	}, 100)
+}
+
+const addPngToZip = async (
+	iconName: string,
+	svgNode: Element | null,
+	zip: JSZip,
+) => {
+	const canvas = document.getElementById(
+		`canvas-${iconName}`,
+	) as HTMLCanvasElement
+
+	if (canvas && svgNode) {
+		const ctx = canvas.getContext('2d')
+		const DOMURL = window.URL || window.webkitURL || window
+
+		const img = new Image()
+
+		const svgBlob = new Blob([svgNode.outerHTML], {
+			type: 'image/svg+xml;charset=utf-8',
+		})
+		const url = DOMURL.createObjectURL(svgBlob)
+
+		if (ctx) {
+			ctx.drawImage(img, 0, 0)
+			//eslint-disable-next-line functional/immutable-data
+			img.onload = async function () {
+				ctx.drawImage(img, 0, 0)
+
+				await canvas.toBlob(function (blob) {
+					blob && zip.file(`${iconName}.png`, blob)
+				})
+
+				// clean canvas to prevent double icons
+				ctx.clearRect(0, 0, canvas.width, canvas.height)
+				ctx.beginPath()
+			}
+
+			//eslint-disable-next-line functional/immutable-data
+			img.src = url
+		}
+	}
+}
+
 export const DownloadActions = () => {
 	const router = useRouter()
 	const { icons: filteredIcons } = useSearch()
+	const { formats } = useDownloadContext()
 	const { selectedIcons, handleOnClear } = useSelection()
 
-	const handleOnDownload = () => {
+	const handleOnDownload = async () => {
 		if (filteredIcons.length) {
 			const zip = new JSZip()
 
@@ -33,19 +84,22 @@ export const DownloadActions = () => {
 				? selectedIcons
 				: filteredIcons
 
-			iconsToDownload.forEach(icon => {
+			// eslint-disable-next-line functional/no-loop-statement
+			for await (const icon of iconsToDownload) {
 				const node = document.querySelector(
 					`div[data-download-name="${icon}"] svg`,
 				)
 
-				if (node) {
+				if (formats.svg && node) {
 					zip.file(`${icon}.svg`, node.outerHTML)
 				}
-			})
 
-			zip.generateAsync({ type: 'blob' }).then(function (content) {
-				FileSaver.saveAs(content, 'polkadot-icons.zip')
-			})
+				if (formats.png) {
+					await addPngToZip(icon, node, zip)
+				}
+			}
+
+			downloadZip(zip)
 		}
 	}
 
@@ -55,9 +109,10 @@ export const DownloadActions = () => {
 		filteredIcons.length,
 	)
 
-	const downloadButtonClasses = filteredIcons.length
-		? styles.download
-		: `${styles.download} ${styles.hide}`
+	const downloadButtonClasses =
+		filteredIcons.length && (formats.png || formats.svg)
+			? styles.download
+			: `${styles.download} ${styles.hide}`
 
 	const clearButtonClasses = selectedIcons.length
 		? styles.clear

@@ -3,9 +3,11 @@ import { InputLabel } from '@components/InputLabel/InputLabel'
 import { ColorInput } from '@components/ColorInput/ColorInput'
 import { RangeInput } from '@components/RangeInput/RangeInput'
 import { RadioButtonGroup } from '@components/RadioButtonGroup/RadioButtonGroup'
+import { CheckButtonGroup } from '@components/CheckButtonGroup/CheckButtonGroup'
 import { Select } from '@components/Select/Select'
 import { useThemeContext } from '@hooks/useThemeContext'
 import { useCustomisationContext } from '@hooks/useCustomisationContext'
+import { useDownloadContext } from '@hooks/useDownloadContext'
 import type { ThemeContext as ThemeContextType } from '@providers/ThemeProvider'
 import type { CustomisationContext as CustomisationContextType } from '@providers/CustomisationProvider'
 import styles from './Header.module.css'
@@ -14,6 +16,7 @@ import { Moon } from '@icons/Moon'
 
 export const Header = () => {
 	const { theme, setTheme } = useThemeContext()
+	const { formats, setFormats } = useDownloadContext()
 	const {
 		strokeColor,
 		setStrokeColor,
@@ -47,6 +50,14 @@ export const Header = () => {
 					options={['line', 'solid', '2 color']}
 					className={styles.styleModule}
 					onChange={setStyle}
+				/>
+
+				<CheckButtonGroup
+					label="Format"
+					values={formats}
+					options={['svg', 'png']}
+					className={styles.formatsModule}
+					onChange={setFormats}
 				/>
 
 				{style !== 'solid' && (

@@ -58,6 +58,12 @@ export const Icon = ({ iconName, ctx }: Props) => {
 			data-download-name={iconName}
 		>
 			<ExternalIcon iconName={iconName} style={ctx.style} />
+			<canvas
+				id={`canvas-${iconName}`}
+				className={styles.canvas}
+				height={ctx.iconSize}
+				width={ctx.iconSize}
+			></canvas>
 		</div>
 	)
 }
