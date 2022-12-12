@@ -124,9 +124,11 @@ export const useIcon = ({ containerRef, containerHasRef, ctx }: Props) => {
 						p.setAttribute('stroke', strokeColor)
 					})
 				}
+
+				changeSize(iconSize)
 			}
 		},
-		[fillColor, strokeColor, containerRef],
+		[fillColor, strokeColor, changeSize, iconSize, containerRef],
 	)
 
 	useEffect(() => {

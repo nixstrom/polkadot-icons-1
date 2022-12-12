@@ -19,7 +19,6 @@ export const useThemeContext = () => {
 	)
 
 	useEffect(() => {
-		console.log('set color scheme', typeof window)
 		setTheme(getColorScheme())
 	}, [setTheme])
 
