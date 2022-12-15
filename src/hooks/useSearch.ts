@@ -4,7 +4,7 @@ import allIcons from '@nixstrom/polkadot-icons'
 import { getIconTitle } from '@translations/iconNames'
 import { context as SearchContext } from '@providers/SearchProvider'
 
-const publicIcons = Object.keys(allIcons)
+const publicIcons = [...Object.keys(allIcons)].sort()
 
 export const useSearch = () => {
 	const [filteredIcons, setFilteredIcons] = useContext(SearchContext)
