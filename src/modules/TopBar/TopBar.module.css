@@ -2,7 +2,8 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 1.25rem 1.5rem;
+	padding: calc(0.6rem * var(--size-adjustment))
+		calc(2rem * var(--size-adjustment));
 }
 
 /* text is always white in this context, regardless of darkmode */
@@ -11,10 +12,9 @@
 }
 
 /* === LOGO ================================================================  */
-
 .logo {
-	height: 29px;
-	width: 28px;
+	height: 45px;
+	width: 42px;
 	z-index: 100;
 	animation-duration: var(--transition-speed);
 }
@@ -46,7 +46,29 @@
 	box-shadow: inset 0 0 0 2px transparent !important;
 	padding-inline-end: 0;
 	color: var(--font-color);
-	font-size: var(--font-size-regular);
+	font-size: calc(1.2rem * var(--size-adjustment));
+}
+
+.triggerInner {
+	position: relative;
+	height: 1em;
+	display: block;
+	width: 6ch;
+	overflow: hidden;
+	min-width: 6ch;
+	height: calc(2rem * var(--size-adjustment));
+	width: calc(2rem * var(--size-adjustment));
+}
+
+.triggerInner span {
+	position: absolute;
+	right: 0;
+	transition: transform var(--transition-speed), opacity var(--transition-speed);
+}
+
+.triggerNavOpen .triggerInner {
+	height: calc(2rem * var(--size-adjustment));
+	width: calc(2rem * var(--size-adjustment));
 }
 
 .triggerNavOpen .triggerOpen {
@@ -56,21 +78,6 @@
 .triggerNavOpen .triggerClose {
 	transform: translateY(0);
 	opacity: 1;
-}
-
-.triggerInner {
-	position: relative;
-	height: 1em;
-	display: block;
-	width: 6ch;
-	overflow: hidden;
-}
-
-.triggerInner span {
-	position: absolute;
-	top: 0;
-	right: 0;
-	transition: transform var(--transition-speed), opacity var(--transition-speed);
 }
 
 .triggerMenu {
@@ -84,8 +91,8 @@
 }
 
 .triggerClose svg {
-	height: 12px;
-	width: 11px;
+	height: calc(2rem * var(--size-adjustment));
+	width: calc(2rem * var(--size-adjustment));
 }
 
 .triggerClose:hover {
@@ -148,6 +155,21 @@
 	transition-delay: 0ms;
 }
 
+@media (min-width: 720px) {
+	.TopBar {
+		padding: calc(2rem * var(--size-adjustment))
+			calc(2.5rem * var(--size-adjustment));
+	}
+
+	.trigger {
+		font-size: calc(2rem * var(--size-adjustment));
+	}
+
+	.triggerInner span {
+		top: -2px;
+	}
+}
+
 @keyframes rotateLogo {
 	from {
 		transform: rotate(0deg);
@@ -165,22 +187,6 @@
 
 	to {
 		transform: rotate(0deg);
-	}
-}
-
-@media (min-width: 720px) {
-	.logo {
-		height: 45px;
-		width: 42px;
-	}
-
-	.trigger {
-		font-size: var(--font-size-xlarge);
-	}
-
-	.triggerClose svg {
-		height: 17px;
-		width: 16px;
 	}
 }
 

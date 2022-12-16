@@ -39,6 +39,8 @@
 	--transition-speed: 0.3s;
 	--transition-speed-slow: 1s;
 	--transition-speed-fast: 0.15s;
+	/* this is to match the Unbounded site, which uses a different rem scale */
+	--size-adjustment: 13.33333/16;
 }
 
 html {

@@ -69,6 +69,14 @@ export const TopBar = () => {
 			>
 				<li role="menuitem">
 					<NavigationLink
+						title="Read license (opens in new tab)"
+						href="https://polkadot.network/"
+					>
+						License
+					</NavigationLink>
+				</li>
+				<li role="menuitem">
+					<NavigationLink
 						title="Share on Twitter (opens in new tab)"
 						href="https://twitter.com/share?url=https://unbounded.polkadot.network/&text=This%20is%20Unbounded%20%E2%80%94%20A%20Polkadot%20Typeface"
 					>
