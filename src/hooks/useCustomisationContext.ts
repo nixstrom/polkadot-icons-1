@@ -34,6 +34,7 @@ export const useCustomisationContext = () => {
 		setState(prevState => ({
 			...prevState,
 			cornerType: newStyle === 'solid' ? 'round' : prevState.cornerType,
+			strokeWidth: newStyle === 'solid' ? '2' : prevState.strokeWidth,
 			style: newStyle,
 			fillColor:
 				// default to two colours in 2-color mode (use brand colour)

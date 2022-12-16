@@ -84,6 +84,7 @@ export const Header = () => {
 							max="2.5"
 							step="0.5"
 							value={strokeWidth}
+							disabled={style === 'solid'}
 							onChange={setStrokeWidth}
 						/>
 						<span className={styles.strokeWidthValue}>{strokeWidth} px</span>
