@@ -5,6 +5,7 @@ import { Button } from '@components/Button/Button'
 import { useSearch } from '@hooks/useSearch'
 import { useSelection } from '@hooks/useSelection'
 import { useDownloadContext } from '@hooks/useDownloadContext'
+import { getIconTitle } from '@translations/iconNames'
 import styles from './DownloadActions.module.css'
 
 const composeDownloadButtonText = (
@@ -56,7 +57,8 @@ const addPngToZip = async (
 				ctx.drawImage(img, 0, 0)
 
 				await canvas.toBlob(function (blob) {
-					blob && zip.file(`${iconName}.png`, blob)
+					blob &&
+						zip.file(`${getIconTitle(iconName).replaceAll('/', '_')}.png`, blob)
 				})
 
 				// clean canvas to prevent double icons
@@ -91,7 +93,10 @@ export const DownloadActions = () => {
 				)
 
 				if (formats.svg && node) {
-					zip.file(`${icon}.svg`, node.outerHTML)
+					zip.file(
+						`${getIconTitle(icon).replaceAll('/', '_')}.svg`,
+						node.outerHTML,
+					)
 				}
 
 				if (formats.png) {
