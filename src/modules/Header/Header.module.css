@@ -9,7 +9,7 @@
 .box {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	gap: 2rem 1.5rem;
+	gap: 2rem 1rem;
 	padding: 1rem;
 }
 
@@ -18,9 +18,12 @@
 	font-size: 1rem;
 }
 
+.resetContainer {
+	text-align: right;
+}
+
 .reset {
 	padding: 0;
-	float: right;
 	background-color: transparent;
 	color: currentColor;
 	border: 0;
@@ -55,17 +58,17 @@
 }
 
 .strokeWidthValue {
-	margin-inline-start: 10px;
+	margin-inline-start: 5px;
 	/* Prevent layout shift when value changes */
 	display: inline-block;
 	width: 4ch;
 }
 
 .sizeWidthValue {
-	margin-inline-start: 10px;
+	margin-inline-start: 5px;
 	/* Prevent layout shift when value changes */
 	display: inline-block;
-	width: 8ch;
+	width: 7ch;
 }
 
 .rangeInputWrapper input {
@@ -98,8 +101,19 @@
 }
 
 @media (min-width: 720px) {
+	.strokeWidthValue {
+		margin-inline-start: 10px;
+		width: 4ch;
+	}
+
+	.sizeWidthValue {
+		margin-inline-start: 10px;
+		width: 7ch;
+	}
+
 	.box {
 		grid-template-columns: 1fr 1fr;
+		gap: 2rem 1.5rem;
 		padding: 2rem;
 	}
 
