@@ -95,8 +95,12 @@
 	width: calc(2rem * var(--size-adjustment));
 }
 
-.triggerClose:hover {
-	color: black;
+.triggerClose path {
+	fill: white;
+}
+
+.triggerClose:hover path {
+	fill: black;
 }
 
 .triggerClose:hover svg {
@@ -167,6 +171,7 @@
 
 	.triggerInner span {
 		top: -2px;
+		right: 2px;
 	}
 }
 
