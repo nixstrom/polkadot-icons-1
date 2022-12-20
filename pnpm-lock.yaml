@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@nixstrom/polkadot-icons': ^0.8.7
+  '@nixstrom/polkadot-icons': ^0.8.8
   '@types/file-saver': ^2.0.5
   '@types/node': 18.8.4
   '@types/react': ^18.0.21
@@ -31,7 +31,7 @@ specifiers:
   typescript: ^4.8.4
 
 dependencies:
-  '@nixstrom/polkadot-icons': registry.npmjs.org/@nixstrom/polkadot-icons/0.8.7_react@18.2.0
+  '@nixstrom/polkadot-icons': registry.npmjs.org/@nixstrom/polkadot-icons/0.8.8_react@18.2.0
   file-saver: 2.0.5
   jszip: 3.10.1
   lottie-react: 2.3.1_biqbaboplfbrettd7655fr4n2y
@@ -2881,11 +2881,11 @@ packages:
     dev: false
     optional: true
 
-  registry.npmjs.org/@nixstrom/polkadot-icons/0.8.7_react@18.2.0:
-    resolution: {integrity: sha512-5cvniKgxdInDrltNhFJO+lfctSyCfnnr6u98pmAr5JiopSsytcPzEisZHrNKwPnULnDfDOZBPP4E04wQq/vzOQ==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/@nixstrom/polkadot-icons/-/polkadot-icons-0.8.7.tgz}
-    id: registry.npmjs.org/@nixstrom/polkadot-icons/0.8.7
+  registry.npmjs.org/@nixstrom/polkadot-icons/0.8.8_react@18.2.0:
+    resolution: {integrity: sha512-dyDVkOBoY+CHEzHu6/3kwnd6Nqx3ctuKx6EV8a97Za7vEKREXPugpy6c/qerB2UFSDyzqPsARpdPoSImKkCI8g==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/@nixstrom/polkadot-icons/-/polkadot-icons-0.8.8.tgz}
+    id: registry.npmjs.org/@nixstrom/polkadot-icons/0.8.8
     name: '@nixstrom/polkadot-icons'
-    version: 0.8.7
+    version: 0.8.8
     peerDependencies:
       react: '>=17.0.0'
     dependencies:
