@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
-import icons from '@nixstrom/polkadot-icons/lib/keyline'
-import solidIcons from '@nixstrom/polkadot-icons/lib/solid'
+import icons from '@nixstrom/polkadot-icons/keyline'
+import solidIcons from '@nixstrom/polkadot-icons/solid'
 import { useIcon } from './hooks/useIcon'
 import type { CustomisationContext as CustomisationContextType } from '@providers/CustomisationProvider'
 import styles from './IconList.module.css'

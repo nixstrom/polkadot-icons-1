@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Logo } from '@icons/Logo'
-import { Close } from '@icons/Close'
+import Close from '@nixstrom/polkadot-icons/solid/Close'
 import { Button } from '@components/Button/Button'
 import { NavigationLink } from '@components/NavigationLink/NavigationLink'
 import styles from './TopBar.module.css'

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef, type FormEvent } from 'react'
 import { useRouter } from 'next/router'
-import allIcons from '@nixstrom/polkadot-icons'
+import allIcons from '@nixstrom/polkadot-icons/solid'
 import { getIconTitle } from '@translations/iconNames'
 import { context as SearchContext } from '@providers/SearchProvider'
 
