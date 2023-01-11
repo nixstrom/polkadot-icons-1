@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react'
-import icons from '@nixstrom/polkadot-icons/keyline'
+import PolkadotIcon from '@nixstrom/polkadot-icons/Icon'
+import keyline from '@nixstrom/polkadot-icons/keyline'
 import solidIcons from '@nixstrom/polkadot-icons/solid'
 import { useIcon } from './hooks/useIcon'
 import type { CustomisationContext as CustomisationContextType } from '@providers/CustomisationProvider'
@@ -8,27 +9,6 @@ import styles from './IconList.module.css'
 type Props = {
 	readonly iconName: string
 	readonly ctx: CustomisationContextType
-}
-
-const ExternalIcon = ({
-	iconName,
-	style,
-}: {
-	readonly iconName: string
-	readonly style: CustomisationContextType['style']
-}) => {
-	const composedKey = iconName as keyof typeof icons
-	const solidKey = iconName as keyof typeof solidIcons
-
-	if (style === 'solid' && solidIcons[solidKey]) {
-		return solidIcons[solidKey]({})
-	}
-
-	if (icons[composedKey]) {
-		return icons[composedKey]({})
-	}
-
-	return null
 }
 
 export const Icon = ({ iconName, ctx }: Props) => {
@@ -57,7 +37,18 @@ export const Icon = ({ iconName, ctx }: Props) => {
 			}`}
 			data-download-name={iconName}
 		>
-			<ExternalIcon iconName={iconName} style={ctx.style} />
+			{ctx.style === 'solid' ? (
+				<PolkadotIcon
+					name={iconName as keyof typeof solidIcons}
+					variant="solid"
+				/>
+			) : (
+				<PolkadotIcon
+					name={iconName as keyof typeof keyline}
+					variant="keyline"
+					height={89}
+				/>
+			)}
 			<canvas
 				id={`canvas-${iconName}`}
 				className={styles.canvas}
