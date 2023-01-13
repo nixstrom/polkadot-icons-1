@@ -126,6 +126,7 @@ export const iconTitles = {
 	RestoreFromBackUp: 'Restore From BackUp',
 	RetailAndEcommerce: 'Retail And Ecommerce',
 	RobustSystem: 'Robust System',
+	ScamAlert: 'Scam Alert',
 	SignATransaction: 'Sign A Transaction',
 	SecondAProposal: 'Second A Proposal',
 	SecretPartOfTheDerivationPath: 'Secret Part Of The Derivation Path',
