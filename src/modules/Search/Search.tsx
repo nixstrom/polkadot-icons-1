@@ -1,7 +1,7 @@
 import type { KeyboardEvent } from 'react'
+import SearchIcon from '@nixstrom/polkadot-icons/keyline/Search'
 import { Box } from '@components/Box/Box'
 import { Button } from '@components/Button/Button'
-import { Search as SearchIcon } from '@icons/Search'
 import { useSearch } from '@hooks/useSearch'
 import styles from './Search.module.css'
 import { Close } from '@icons/Close'
@@ -21,7 +21,7 @@ export const Search = () => {
 		<div className={styles.Search}>
 			<Box>
 				<form onSubmit={onSearch} action="/" method="get">
-					<SearchIcon className={styles.searchIcon} />
+					<SearchIcon aria-hidden className={styles.searchIcon} />
 					<input
 						ref={inputRef}
 						placeholder={`Search ${totalCount} icons`}
