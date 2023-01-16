@@ -49,9 +49,11 @@ export default function Home() {
 				<Search />
 				<Header />
 
-				<IconList />
+				<section className={styles.content}>
+					<IconList />
 
-				<DownloadActions />
+					<DownloadActions />
+				</section>
 			</main>
 
 			<Footer />

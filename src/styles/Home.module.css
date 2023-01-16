@@ -34,13 +34,8 @@
 	overflow: clip;
 }
 
-.header {
-	display: flex;
-	gap: 2rem;
-}
-
-.header input {
-	margin: 1rem 0;
+.content {
+	width: 100%;
 }
 
 @media (min-width: 720px) {
