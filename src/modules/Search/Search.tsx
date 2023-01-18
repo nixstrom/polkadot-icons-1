@@ -4,7 +4,7 @@ import { Box } from '@components/Box/Box'
 import { Button } from '@components/Button/Button'
 import { useSearch } from '@hooks/useSearch'
 import styles from './Search.module.css'
-import { Close } from '@icons/Close'
+import Close from '@nixstrom/polkadot-icons/solid/Close'
 
 export const Search = () => {
 	const { inputRef, initialValue, totalCount, onSearch, onClear } = useSearch()
@@ -21,7 +21,13 @@ export const Search = () => {
 		<div className={styles.Search}>
 			<Box>
 				<form onSubmit={onSearch} action="/" method="get">
-					<SearchIcon aria-hidden className={styles.searchIcon} />
+					<SearchIcon
+						aria-hidden
+						strokeWidth={2}
+						strokeLinecap="round"
+						strokeLinejoin="round"
+						className={styles.searchIcon}
+					/>
 					<input
 						ref={inputRef}
 						placeholder={`Search ${totalCount} icons`}
@@ -40,6 +46,8 @@ export const Search = () => {
 								aria-hidden
 								height="22"
 								width="10"
+								strokeWidth={2}
+								strokeLinecap="round"
 								className={styles.clearIcon}
 							/>
 						</button>

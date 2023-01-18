@@ -80,8 +80,8 @@
 	top: -1px;
 }
 
-.clearIcon path {
-	fill: var(--inverse-color);
+.clearIcon {
+	stroke: var(--inverse-color);
 }
 
 @media (min-width: 720px) {

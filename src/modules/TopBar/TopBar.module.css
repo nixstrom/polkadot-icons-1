@@ -87,20 +87,11 @@
 .triggerClose {
 	transform: translateY(100%);
 	opacity: 0;
-	transition: color var(--transition-speed-fast);
 }
 
 .triggerClose svg {
 	height: calc(2rem * var(--size-adjustment));
 	width: calc(2rem * var(--size-adjustment));
-}
-
-.triggerClose path {
-	fill: white;
-}
-
-.triggerClose:hover path {
-	fill: black;
 }
 
 .triggerClose:hover svg {

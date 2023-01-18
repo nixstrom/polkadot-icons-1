@@ -56,7 +56,7 @@ export const TopBar = () => {
 				<span className={styles.triggerInner} aria-hidden>
 					<span className={styles.triggerOpen}>Menu</span>
 					<span className={styles.triggerClose}>
-						<Close />
+						<Close stroke="white" strokeWidth={2} strokeLinecap="round" />
 					</span>
 				</span>
 			</Button>
