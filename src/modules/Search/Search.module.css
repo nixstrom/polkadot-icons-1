@@ -18,7 +18,7 @@
 	font-family: var(--font-family);
 	font-size: 1rem;
 	width: 100%;
-	padding-inline: 3rem 15rem;
+	padding-inline: 3rem 0;
 	transition: box-shadow var(--transition-speed);
 }
 
@@ -85,6 +85,10 @@
 }
 
 @media (min-width: 720px) {
+	.input {
+		padding-inline: 3rem 15rem;
+	}
+
 	.button {
 		display: block;
 		height: calc(var(--input-height) - (2 * var(--input-padding-block)));
