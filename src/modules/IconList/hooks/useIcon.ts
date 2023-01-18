@@ -15,7 +15,7 @@ type Props = {
 
 type Status = 'loading' | 'error' | 'success'
 
-const svgChildren = 'path, circle, rect'
+const svgChildren = 'path, circle, rect, ellipse'
 
 export const useIcon = ({ containerRef, containerHasRef, ctx }: Props) => {
 	const { strokeColor, strokeWidth, fillColor, cornerType, iconSize, style } =
