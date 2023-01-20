@@ -49,7 +49,7 @@ export const iconTitles = {
 	DaOs: 'DAOs',
 	DataAndAnalytics: 'Data & Analytics',
 	DayLightMode: 'Day/Light Mode',
-	DecentralisedStorage: 'Distributed File Storage',
+	DecentralisedStorage: 'Decentralised File Storage',
 	Defi: 'DeFi',
 	DeleteCancel: 'Delete/Cancel',
 	DerivationPath: 'Derivation Path',

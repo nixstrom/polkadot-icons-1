@@ -101,9 +101,11 @@ export const useIcon = ({ containerRef, containerHasRef, ctx }: Props) => {
 	const changeStyle = useCallback(
 		(newStyle: CustomisationContextType['style']) => {
 			if (containerRef.current) {
+				const svgEl = containerRef.current?.querySelector('svg')
 				const paths = containerRef.current?.querySelectorAll(svgChildren) || []
 
 				if (newStyle === 'solid') {
+					svgEl?.setAttribute('fill', fillColor)
 					paths.forEach(p => {
 						p.hasAttribute('fill') &&
 							p.getAttribute('fill') !== 'none' &&
