@@ -1,10 +1,10 @@
 import type { KeyboardEvent } from 'react'
 import SearchIcon from '@nixstrom/polkadot-icons/keyline/Search'
+import Close from '@nixstrom/polkadot-icons/keyline/Close'
 import { Box } from '@components/Box/Box'
 import { Button } from '@components/Button/Button'
 import { useSearch } from '@hooks/useSearch'
 import styles from './Search.module.css'
-import Close from '@nixstrom/polkadot-icons/solid/Close'
 
 export const Search = () => {
 	const { inputRef, initialValue, totalCount, onSearch, onClear } = useSearch()

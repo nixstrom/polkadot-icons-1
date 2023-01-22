@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Logo } from '@icons/Logo'
-import Close from '@nixstrom/polkadot-icons/solid/Close'
+import Close from '@nixstrom/polkadot-icons/keyline/Close'
 import { Button } from '@components/Button/Button'
 import { NavigationLink } from '@components/NavigationLink/NavigationLink'
 import styles from './TopBar.module.css'
@@ -56,7 +56,7 @@ export const TopBar = () => {
 				<span className={styles.triggerInner} aria-hidden>
 					<span className={styles.triggerOpen}>Menu</span>
 					<span className={styles.triggerClose}>
-						<Close stroke="white" strokeWidth={2} strokeLinecap="round" />
+						<Close stroke="white" strokeWidth={2} />
 					</span>
 				</span>
 			</Button>
