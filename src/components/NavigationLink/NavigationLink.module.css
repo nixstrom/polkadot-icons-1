@@ -2,7 +2,6 @@
 	--NavigationLink-color: white;
 	display: inline-block;
 	border: 0;
-	font-size: calc(2rem * var(--size-adjustment));
 	padding: 1rem 1.25rem;
 	background-color: transparent;
 	color: var(--font-color);
@@ -10,6 +9,17 @@
 	text-transform: uppercase;
 	white-space: nowrap;
 	cursor: pointer;
+
+	/* Font scaling:
+		Minimum: Sane value picked from Figma design
+		Ideal  : Scale grabbed from Unbounded website (weird, yes)
+		Maximum: Same as max value on Unbounded website (@>1920px)
+	*/
+	font-size: clamp(
+		calc(2rem * var(--size-adjustment)),
+		calc(0.6944444444vw * 4),
+		calc(4rem * var(--size-adjustment))
+	);
 }
 
 .NavigationLink:hover,
@@ -20,10 +30,6 @@
 }
 
 @media (min-width: 720px) {
-	.NavigationLink {
-		font-size: calc(3rem * var(--size-adjustment));
-	}
-
 	.NavigationLink:hover,
 	.NavigationLink:focus {
 		text-underline-offset: calc(1rem * var(--size-adjustment));
