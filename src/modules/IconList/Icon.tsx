@@ -11,7 +11,16 @@ type Props = {
 }
 
 export const Icon = ({ iconName, ctx }: Props) => {
+	const [strokeLinecap, strokeLinejoin] =
+		ctx.cornerType === 'round'
+			? ['round', 'round']
+			: ctx.cornerType === 'bevel'
+			? ['square', 'bevel']
+			: ['square', 'miter']
+
 	const iconProps = {
+		strokeLinecap,
+		strokeLinejoin,
 		height: ctx.iconSize,
 		width: ctx.iconSize,
 		stroke: ctx.style === 'solid' ? ctx.fillColor : ctx.strokeColor,
