@@ -78,7 +78,7 @@ export const TopBar = () => {
 				<li role="menuitem">
 					<NavigationLink
 						title="Share on Twitter (opens in new tab)"
-						href="https://twitter.com/share?url=https://unbounded.polkadot.network/&text=This%20is%20the%20Polkadot%20Icon%20Set%20%E2%80%94%20A%20fully%20variable%20icon%20suite%20for%20the%20Polkadot%20community"
+						href="https://twitter.com/share?url=https://icons.polkadot.network/&text=This%20is%20the%20Polkadot%20Icon%20Set%20%E2%80%94%20A%20fully%20variable%20icon%20suite%20for%20the%20Polkadot%20community"
 					>
 						Share
 					</NavigationLink>
