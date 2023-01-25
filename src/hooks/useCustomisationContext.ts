@@ -54,20 +54,31 @@ export const useCustomisationContext = () => {
 	)
 
 	// invert colours only if they don't match the theme
-	const switchThemeColors = useCallback(
-		(
-			newTheme: ThemeContextType['theme'],
-			stateKey: 'strokeColor' | 'fillColor',
-		) => {
-			if (newTheme === 'dark' && state[stateKey] === '#000000') {
+	const switchThemeStrokeColor = useCallback(
+		(newTheme: ThemeContextType['theme']) => {
+			if (newTheme === 'dark' && state.strokeColor === '#000000') {
 				return '#ffffff'
-			} else if (newTheme === 'light' && state[stateKey] === '#ffffff') {
+			} else if (newTheme === 'light' && state.strokeColor === '#ffffff') {
 				return '#000000'
 			}
 
-			return state[stateKey]
+			return state.strokeColor
 		},
-		[state],
+		[state.strokeColor],
+	)
+
+	// invert colours only if they don't match the theme
+	const switchThemeFillColor = useCallback(
+		(newTheme: ThemeContextType['theme']) => {
+			if (newTheme === 'dark' && state.fillColor === '#000000') {
+				return '#ffffff'
+			} else if (newTheme === 'light' && state.fillColor === '#ffffff') {
+				return '#000000'
+			}
+
+			return state.fillColor
+		},
+		[state.fillColor],
 	)
 
 	const reset = () => {
@@ -80,9 +91,15 @@ export const useCustomisationContext = () => {
 	}
 
 	useEffect(() => {
-		setStrokeColor(switchThemeColors(theme, 'strokeColor'))
-		setFillColor(switchThemeColors(theme, 'fillColor'))
-	}, [setStrokeColor, setFillColor, switchThemeColors, theme])
+		setStrokeColor(switchThemeStrokeColor(theme))
+		setFillColor(switchThemeFillColor(theme))
+	}, [
+		setStrokeColor,
+		setFillColor,
+		switchThemeStrokeColor,
+		switchThemeFillColor,
+		theme,
+	])
 
 	return {
 		...state,
