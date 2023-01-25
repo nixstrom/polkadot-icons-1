@@ -4,6 +4,7 @@ import {
 	initialState,
 	type CustomisationContext as CustomisationContextType,
 } from '@providers/CustomisationProvider'
+import type { ThemeContext as ThemeContextType } from '@providers/ThemeProvider'
 import { useThemeContext } from '@hooks/useThemeContext'
 
 export const useCustomisationContext = () => {
@@ -52,6 +53,23 @@ export const useCustomisationContext = () => {
 		[setState],
 	)
 
+	// invert colours only if they don't match the theme
+	const switchThemeColors = useCallback(
+		(
+			newTheme: ThemeContextType['theme'],
+			stateKey: 'strokeColor' | 'fillColor',
+		) => {
+			if (newTheme === 'dark' && state[stateKey] === '#000000') {
+				return '#ffffff'
+			} else if (newTheme === 'light' && state[stateKey] === '#ffffff') {
+				return '#000000'
+			}
+
+			return state[stateKey]
+		},
+		[state],
+	)
+
 	const reset = () => {
 		setStrokeColor(theme === 'dark' ? '#ffffff' : '#000000')
 		setFillColor(theme === 'dark' ? '#ffffff' : '#000000')
@@ -62,9 +80,9 @@ export const useCustomisationContext = () => {
 	}
 
 	useEffect(() => {
-		setStrokeColor(theme === 'dark' ? '#ffffff' : '#000000')
-		setFillColor(theme === 'dark' ? '#ffffff' : '#000000')
-	}, [setStrokeColor, setFillColor, theme])
+		setStrokeColor(switchThemeColors(theme, 'strokeColor'))
+		setFillColor(switchThemeColors(theme, 'fillColor'))
+	}, [setStrokeColor, setFillColor, switchThemeColors, theme])
 
 	return {
 		...state,
