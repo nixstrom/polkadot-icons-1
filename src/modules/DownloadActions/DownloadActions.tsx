@@ -33,44 +33,43 @@ const downloadZip = (zip: JSZip) => {
 const addPngToZip = async (
 	iconName: string,
 	svgNode: Element | null,
-	zip: JSZip,
-) => {
-	const canvas = document.getElementById(
-		`canvas-${iconName}`,
-	) as HTMLCanvasElement
+): Promise<Blob> =>
+	new Promise(function (resolve, reject) {
+		const canvas = document.getElementById(
+			`canvas-${iconName}`,
+		) as HTMLCanvasElement
 
-	if (canvas && svgNode) {
-		const ctx = canvas.getContext('2d')
-		const DOMURL = window.URL || window.webkitURL || window
+		if (canvas && svgNode) {
+			const ctx = canvas.getContext('2d')
+			const DOMURL = window.URL || window.webkitURL || window
 
-		const img = new Image()
+			const img = new Image()
 
-		const svgBlob = new Blob([svgNode.outerHTML], {
-			type: 'image/svg+xml;charset=utf-8',
-		})
-		const url = DOMURL.createObjectURL(svgBlob)
+			const svgBlob = new Blob([svgNode.outerHTML], {
+				type: 'image/svg+xml;charset=utf-8',
+			})
+			const url = DOMURL.createObjectURL(svgBlob)
 
-		if (ctx) {
-			ctx.drawImage(img, 0, 0)
-			//eslint-disable-next-line functional/immutable-data
-			img.onload = async function () {
+			if (ctx) {
 				ctx.drawImage(img, 0, 0)
+				//eslint-disable-next-line functional/immutable-data
+				img.onload = async function () {
+					ctx.drawImage(img, 0, 0)
 
-				await canvas.toBlob(function (blob) {
-					blob &&
-						zip.file(`${getIconTitle(iconName).replaceAll('/', '_')}.png`, blob)
-				})
+					await canvas.toBlob(function (blob) {
+						resolve(blob as Blob)
+					})
 
-				// clean canvas to prevent double icons
-				ctx.clearRect(0, 0, canvas.width, canvas.height)
-				ctx.beginPath()
-			}
+					// clean canvas to prevent double icons
+					ctx.clearRect(0, 0, canvas.width, canvas.height)
+					ctx.beginPath()
+				}
 
-			//eslint-disable-next-line functional/immutable-data
-			img.src = url
+				//eslint-disable-next-line functional/immutable-data
+				img.src = url
+			} else reject()
 		}
-	}
-}
+	})
 
 export const DownloadActions = () => {
 	const router = useRouter()
@@ -100,7 +99,10 @@ export const DownloadActions = () => {
 				}
 
 				if (formats.png) {
-					await addPngToZip(icon, node, zip)
+					zip.file(
+						`${getIconTitle(icon).replaceAll('/', '_')}.png`,
+						addPngToZip(icon, node),
+					)
 				}
 			}
 
