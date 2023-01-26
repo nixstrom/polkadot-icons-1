@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@nixstrom/polkadot-icons': ^0.11.6
+  '@nixstrom/polkadot-icons': ^0.11.7
   '@types/file-saver': ^2.0.5
   '@types/node': 18.8.4
   '@types/react': ^18.0.21
@@ -31,7 +31,7 @@ specifiers:
   typescript: ^4.8.4
 
 dependencies:
-  '@nixstrom/polkadot-icons': 0.11.6_react@18.2.0
+  '@nixstrom/polkadot-icons': 0.11.7_react@18.2.0
   file-saver: 2.0.5
   jszip: 3.10.1
   lottie-react: 2.3.1_biqbaboplfbrettd7655fr4n2y
@@ -279,8 +279,8 @@ packages:
     dev: false
     optional: true
 
-  /@nixstrom/polkadot-icons/0.11.6_react@18.2.0:
-    resolution: {integrity: sha512-3xvyHNZG8h+AUejpAuTOKHrMF45Gjz1MLAe6onuD8Bk0TAHhyxUEWs5t9Z/+6rJOg5eQaImhi17ChY3ksgOD8w==}
+  /@nixstrom/polkadot-icons/0.11.7_react@18.2.0:
+    resolution: {integrity: sha512-smG1oHDsUbMVhLK6adiAdlf9Gw2pPf1kVblQmEaGqrXx/JlWcpwLDErhLiRTB0fLhk69MoVVY0Wxh9eHkhjqtw==}
     peerDependencies:
       react: '>=17.0.0'
     dependencies:
