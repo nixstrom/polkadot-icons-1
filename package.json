@@ -11,7 +11,7 @@
 		"prettier": "prettier --write ."
 	},
 	"dependencies": {
-		"@nixstrom/polkadot-icons": "^0.11.11",
+		"@nixstrom/polkadot-icons": "^0.11.12",
 		"file-saver": "^2.0.5",
 		"jszip": "^3.10.1",
 		"lottie-react": "^2.3.1",
