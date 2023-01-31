@@ -19,14 +19,6 @@ export const Search = () => {
 		}
 	}
 
-	const inputProps = query
-		? {
-				value: query,
-		  }
-		: {
-				defaultValue: initialValue,
-		  }
-
 	return (
 		<div className={styles.Search}>
 			<Box>
@@ -44,7 +36,8 @@ export const Search = () => {
 						onChange={handleOnChange}
 						onKeyDown={handleOnKeyDown}
 						className={styles.input}
-						{...inputProps}
+						value={query}
+						defaultValue={initialValue}
 					/>
 					{!!query && (
 						<button

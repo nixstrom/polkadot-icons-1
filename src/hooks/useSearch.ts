@@ -22,8 +22,6 @@ export const useSearch = () => {
 	const [query, setQuery] = useState(() => router.query.search || '')
 
 	const onSearch = (newQuery: string) => {
-		setQuery(newQuery)
-
 		if (newQuery) {
 			router.push(
 				`/?search=${encodeURIComponent(newQuery.trim())}`,
@@ -37,7 +35,6 @@ export const useSearch = () => {
 
 	const onClear = () => {
 		if (query) {
-			setQuery('')
 			router.push('/', undefined, { scroll: false })
 		}
 	}
@@ -55,8 +52,12 @@ export const useSearch = () => {
 					),
 			)
 
+			// control query only as a side effect of route change
+			setQuery(router.query.search)
+
 			setFilteredIcons({ icons })
 		} else {
+			setQuery('')
 			setFilteredIcons({ icons: publicIcons })
 		}
 	}, [router.query.search, setFilteredIcons])
