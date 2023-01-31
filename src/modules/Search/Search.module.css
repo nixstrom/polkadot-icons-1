@@ -1,8 +1,6 @@
 .Search {
 	--input-height: 5rem;
 	--input-padding-block: 1rem;
-	--button-padding-inline: 3.75em;
-	--button-width: calc(6ch + (2 * var(--button-padding-inline)));
 	width: 100%;
 	position: relative;
 	padding-block: 1rem;
@@ -48,10 +46,6 @@
 	stroke: currentColor;
 }
 
-.button {
-	display: none;
-}
-
 .clear {
 	height: 22px;
 	width: 22px;
@@ -85,27 +79,10 @@
 }
 
 @media (min-width: 720px) {
-	.input {
-		padding-inline: 3rem 15rem;
-	}
-
-	.button {
-		display: block;
-		height: calc(var(--input-height) - (2 * var(--input-padding-block)));
-		width: var(--button-width);
-		border-radius: 50px;
-		padding-inline: var(--button-padding-inline);
-		font-size: 1rem;
-		position: absolute;
-		right: var(--input-padding-block);
-		top: 50%;
-		transform: translateY(-50%);
-	}
-
 	.clear {
 		font-size: var(--font-size-xlarge);
 		line-height: 1;
-		right: calc(var(--button-width) + var(--input-padding-block));
+		right: var(--input-padding-block);
 	}
 }
 

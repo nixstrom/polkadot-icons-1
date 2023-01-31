@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, type FormEvent } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import allIcons from '@nixstrom/polkadot-icons/solid'
 import { getIconTitle } from '@translations/iconNames'
@@ -18,15 +18,15 @@ const publicIcons = [...Object.keys(allIcons)].sort((a, b) => {
 
 export const useSearch = () => {
 	const [filteredIcons, setFilteredIcons] = useContext(SearchContext)
-	const inputRef = useRef<HTMLInputElement | null>(null)
 	const router = useRouter()
+	const [query, setQuery] = useState(() => router.query.search || '')
 
-	const onSearch = (event: FormEvent) => {
-		event.preventDefault()
+	const onSearch = (newQuery: string) => {
+		setQuery(newQuery)
 
-		if (inputRef.current?.value) {
+		if (newQuery) {
 			router.push(
-				`/?search=${encodeURIComponent(inputRef.current.value.trim())}`,
+				`/?search=${encodeURIComponent(newQuery.trim())}`,
 				undefined,
 				{ scroll: false },
 			)
@@ -36,9 +36,9 @@ export const useSearch = () => {
 	}
 
 	const onClear = () => {
-		if (inputRef.current?.value) {
-			// eslint-disable-next-line functional/immutable-data
-			inputRef.current.value = ''
+		if (query) {
+			setQuery('')
+			router.push('/', undefined, { scroll: false })
 		}
 	}
 
@@ -62,9 +62,9 @@ export const useSearch = () => {
 	}, [router.query.search, setFilteredIcons])
 
 	return {
-		inputRef,
 		initialValue: router.query.search,
 		onSearch,
+		query,
 		onClear,
 		icons: filteredIcons.icons,
 		totalCount: publicIcons.length,

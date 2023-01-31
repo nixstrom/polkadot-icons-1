@@ -1,26 +1,36 @@
-import type { KeyboardEvent } from 'react'
+import type { KeyboardEvent, ChangeEvent } from 'react'
 import SearchIcon from '@nixstrom/polkadot-icons/keyline/Search'
 import Close from '@nixstrom/polkadot-icons/keyline/Close'
 import { Box } from '@components/Box/Box'
-import { Button } from '@components/Button/Button'
 import { useSearch } from '@hooks/useSearch'
 import styles from './Search.module.css'
 
 export const Search = () => {
-	const { inputRef, initialValue, totalCount, onSearch, onClear } = useSearch()
+	const { initialValue, totalCount, query, onSearch, onClear } = useSearch()
+
+	const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
+		onSearch(event.target.value)
+	}
 
 	const handleOnKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
 		// prevent clear button being pressed when pressing enter
 		if (event.key === 'Enter') {
 			event.preventDefault()
-			onSearch(event)
 		}
 	}
+
+	const inputProps = query
+		? {
+				value: query,
+		  }
+		: {
+				defaultValue: initialValue,
+		  }
 
 	return (
 		<div className={styles.Search}>
 			<Box>
-				<form onSubmit={onSearch} action="/" method="get">
+				<form onSubmit={e => e.preventDefault()} action="/" method="get">
 					<SearchIcon
 						aria-hidden
 						strokeWidth={2}
@@ -29,14 +39,14 @@ export const Search = () => {
 						className={styles.searchIcon}
 					/>
 					<input
-						ref={inputRef}
 						placeholder={`Search ${totalCount} icons`}
 						type="search"
+						onChange={handleOnChange}
 						onKeyDown={handleOnKeyDown}
 						className={styles.input}
-						defaultValue={initialValue}
+						{...inputProps}
 					/>
-					{!!inputRef.current?.value && (
+					{!!query && (
 						<button
 							className={styles.clear}
 							aria-label="Clear search"
@@ -52,9 +62,6 @@ export const Search = () => {
 							/>
 						</button>
 					)}
-					<Button type="submit" className={styles.button} state="selected">
-						Search
-					</Button>
 				</form>
 			</Box>
 		</div>
