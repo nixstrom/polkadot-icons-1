@@ -70,7 +70,7 @@ export const TopBar = () => {
 				<li role="menuitem">
 					<NavigationLink
 						title="Read license (opens in new tab)"
-						href="https://polkadot.network/"
+						href="https://github.com/w3f/polkadot-react-icons/blob/master/LICENSE.txt"
 					>
 						License
 					</NavigationLink>
@@ -86,7 +86,7 @@ export const TopBar = () => {
 				<li role="menuitem">
 					<NavigationLink
 						title="See code on Github (opens in new tab)"
-						href="https://polkadot.network/"
+						href="https://github.com/w3f/polkadot-react-icons"
 					>
 						Github
 					</NavigationLink>
