@@ -12,7 +12,6 @@ export const AnimatedHero = () => (
 			animationData={heroAnimation}
 			className={styles.lottie}
 			loop={false}
-			aria-label="Polkadot Icons"
 		/>
 	</div>
 )

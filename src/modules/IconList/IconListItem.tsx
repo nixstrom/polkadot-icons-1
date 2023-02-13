@@ -36,10 +36,8 @@ export const IconListItem = ({ iconName, ctx }: Props) => {
 
 	return (
 		<li className={styles.listItem}>
-			{/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
-			<label
-				className={styles.label}
-				htmlFor={`checkbox-${iconName}`}
+			<button
+				className={styles.button}
 				onClick={() => handleOnCheckToggle(iconName)}
 			/>
 			<input
@@ -50,10 +48,11 @@ export const IconListItem = ({ iconName, ctx }: Props) => {
 				onChange={() => handleOnCheckToggle(iconName)}
 				onKeyDown={event => handleOnKeydown(event, iconName)}
 				tabIndex={0}
+				aria-labelledby={`label-${iconName}`}
 			/>
 			<div className={styles.fauxCheckbox} />
 			<Icon {...{ ctx, iconName }} />
-			<small>{getIconTitle(iconName)}</small>
+			<small id={`label-${iconName}`}>{getIconTitle(iconName)}</small>
 		</li>
 	)
 }
