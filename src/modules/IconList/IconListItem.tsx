@@ -34,10 +34,15 @@ export const IconListItem = ({ iconName, ctx }: Props) => {
 		[uncheckOnUnmount],
 	)
 
+	const buttonLabel = selectedIcons.includes(iconName)
+		? `Deselect ${getIconTitle(iconName)}`
+		: `Select ${getIconTitle(iconName)}`
+
 	return (
 		<li className={styles.listItem}>
 			<button
 				className={styles.button}
+				aria-label={buttonLabel}
 				onClick={() => handleOnCheckToggle(iconName)}
 			/>
 			<input
