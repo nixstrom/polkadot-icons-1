@@ -45,6 +45,32 @@ export default function Home() {
 					type="font/woff2"
 					crossOrigin="anonymous"
 				/>
+
+				<meta property="og:type" content="website" />
+				<meta property="og:url" content="/" />
+				<meta property="og:title" content="Polkadot Icon Set | Brand Assets" />
+				<meta
+					property="og:image"
+					content="https://icons.polkadot.network/Web3-Icon-Thumbnail.jpg"
+				/>
+				<meta property="og:site_name" content="Polkadot Icon Set" />
+				<meta
+					property="og:description"
+					content="Browse and download a free comprehensive set of iconography for your Web3 projects."
+				/>
+
+				<meta name="twitter:card" content="summary" />
+				<meta name="twitter:url" content="/" />
+				<meta name="twitter:title" content="Polkadot Icon Set | Brand Assets" />
+				<meta name="twitter:site" content="Polkadot Icon Set" />
+				<meta
+					name="twitter:description"
+					content="Browse and download a free comprehensive set of iconography for your Web3 projects."
+				/>
+				<meta
+					name="twitter:image"
+					content="https://icons.polkadot.network/Web3-Icon-Thumbnail.jpg"
+				/>
 			</Head>
 			<TopBar />
 			<AnimatedHero />
